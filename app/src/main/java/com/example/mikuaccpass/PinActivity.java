@@ -9,7 +9,7 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 
 public class PinActivity extends Activity {
-    private LockApplication lock;
+    private GlobalApplication lock;
     private Button btn_main;
 
     @Override
@@ -17,7 +17,7 @@ public class PinActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin);
         btn_main = findViewById(R.id.btn_main);
-        lock = (LockApplication)getApplication();
+        lock = (GlobalApplication)getApplication();
 
         btn_main.setOnClickListener(new View.OnClickListener() {
             @Override

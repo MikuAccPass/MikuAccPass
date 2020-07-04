@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +14,7 @@ import com.wei.android.lib.fingerprintidentify.FingerprintIdentify;
 import com.wei.android.lib.fingerprintidentify.base.BaseFingerprint;
 
 public class FingerprintActivity extends Activity {
-    private LockApplication lock;
+    private GlobalApplication lock;
     private TextView tv_finger;
     private FingerprintIdentify identify;
 
@@ -26,7 +25,7 @@ public class FingerprintActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint);
 
-        lock = (LockApplication)getApplication();
+        lock = (GlobalApplication)getApplication();
         tv_finger = findViewById(R.id.tv_finger);
 
         identify = new FingerprintIdentify(getApplicationContext());

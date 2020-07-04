@@ -2,17 +2,18 @@ package com.example.mikuaccpass;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BaseActivity extends AppCompatActivity {
-    LockApplication lock;
+    GlobalApplication lock;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        lock = (LockApplication) getApplication();
+        lock = (GlobalApplication) getApplication();
     }
 
     @Override
@@ -27,6 +28,14 @@ public class BaseActivity extends AppCompatActivity {
         if (lock.isLocked()) {
             Intent finger = new Intent(this, FingerprintActivity.class);
             startActivity(finger);
+        }
+        if(lock.ScreenshotPermit())
+        {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+        }
+        else
+        {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         }
     }
 
