@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:text="使用Pin验证"
         android:layout_centerHorizontal="true"
+        android:onClick="usePin"
         android:layout_below="@id/tv_finger"/>
 
 </RelativeLayout>

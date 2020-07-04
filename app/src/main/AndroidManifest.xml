@@ -22,6 +22,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".FingerprintActivity"/>
+        <activity android:name=".SetPinActivity"/>
+        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".PinActivity"/>
     </application>
 
 </manifest>
