@@ -15,7 +15,7 @@ public class PinActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_pin);
         btn_main = findViewById(R.id.btn_main);
         lock = (LockApplication)getApplication();
 
