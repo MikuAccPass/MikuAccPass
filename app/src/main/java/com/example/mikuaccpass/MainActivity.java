@@ -2,14 +2,15 @@ package com.example.mikuaccpass;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import android.widget.SearchView;
-
 public class MainActivity extends AppCompatActivity {
     private Button btn_main=null;
+    LockApplication lock;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +23,22 @@ public class MainActivity extends AppCompatActivity {
                 setContentView (R. layout.main);
             }
         });
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        lock = (LockApplication) getApplication();
+        if(lock.isLocked()){
+            Intent finger = new Intent(this,FingerprintActivity.class);
+            startActivity(finger);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        lock.setLocked(true);
     }
 }
 
