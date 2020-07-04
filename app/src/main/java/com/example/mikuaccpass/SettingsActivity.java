@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
@@ -18,6 +19,8 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
 
         Button pin_btn = (Button)findViewById(R.id.pin_btn);
         pin_btn.setOnClickListener(new View.OnClickListener() {
@@ -36,12 +39,12 @@ public class SettingsActivity extends AppCompatActivity {
                     Toast shot_toast= Toast.makeText(SettingsActivity.this, "允许屏幕截图", Toast.LENGTH_SHORT);
                     shot_toast.setGravity(Gravity.CENTER, 0, 0);
                     shot_toast.show();
-
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
                 }else{
                     Toast shot_toast = Toast.makeText(SettingsActivity.this, "禁止屏幕截图", Toast.LENGTH_SHORT);
                     shot_toast.setGravity(Gravity.CENTER, 0, 0);
                     shot_toast.show();
-
+                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
                 }
             }
         });
