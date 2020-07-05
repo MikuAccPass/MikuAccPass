@@ -27,8 +27,14 @@ public class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (global.isLocked()) {
-            Intent finger = new Intent(this, FingerprintActivity.class);
-            startActivity(finger);
+            if(global.isFingerprint_enable()) {
+                Intent finger = new Intent(this, FingerprintActivity.class);
+                startActivity(finger);
+            }
+            else{
+                Intent pin = new Intent(this, PinActivity.class);
+                startActivity(pin);
+            }
         }
         if(global.ScreenshotPermit())
         {
