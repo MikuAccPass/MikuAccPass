@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class BaseActivity extends AppCompatActivity {
     GlobalApplication lock;
+    private static int appCount = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -19,7 +20,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        lock.setBack(false);
+        appCount++;
     }
 
     @Override
@@ -42,9 +43,10 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        lock.setBack(true);
-        if (lock.isBacked())
+        appCount--;
+        if(appCount == 0){
             lock.setLocked(true);
+        }
     }
 }
 

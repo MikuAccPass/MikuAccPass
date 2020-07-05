@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 
 public class GlobalApplication extends Application {
     private boolean isLocked;
-    private boolean back;
     private boolean screenshotPermit;
     private int pin;
 
@@ -15,7 +14,6 @@ public class GlobalApplication extends Application {
     public void onCreate() {
         super.onCreate();
         setLocked(true);
-        setBack(false);
         setScreenshotPermit(false);
 
         preferences = getSharedPreferences("get_pin", MODE_PRIVATE);
@@ -30,18 +28,9 @@ public class GlobalApplication extends Application {
         return isLocked;
     }
 
-    public void setBack(boolean back) {
-        this.back = back;
-    }
-
-    public boolean isBacked() {
-        return back;
-    }
-
     public boolean ScreenshotPermit() {
         return screenshotPermit;
     }
-
 
     public void setScreenshotPermit(boolean screenshotPermit) {
         this.screenshotPermit = screenshotPermit;
