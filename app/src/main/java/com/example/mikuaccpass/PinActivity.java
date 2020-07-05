@@ -14,8 +14,7 @@ import androidx.annotation.Nullable;
 public class PinActivity extends Activity {
     private GlobalApplication lock;
     private Button btn_main;
-//    private SharedPreferences preferences;
-//    private EditText password;
+    private EditText password;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,25 +22,20 @@ public class PinActivity extends Activity {
         setContentView(R.layout.activity_pin);
         btn_main = findViewById(R.id.btn_main);
         lock = (GlobalApplication)getApplication();
-
-//        preferences = this.getSharedPreferences("get_pin", MODE_PRIVATE);
-//        final String MyPin = preferences.getString("Pin", "");
+        password = findViewById(R.id.Password);
 
         btn_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                password = findViewById(R.id.Password);
-//                if(MyPin.equals(password)) {
-//                    Toast.makeText(PinActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-//                    Intent i = new Intent(PinActivity.this, MainActivity.class);
-//                    startActivity(i);
-//                }else{
-//                    password.setError("密码（Pin）错误，请重试！");
-//                    return;
-//                }
-
-                lock.setLocked(false);
-                PinActivity.this.finish();
+                int pin_input = Integer.parseInt(password.getText().toString());
+                if(pin_input == lock.getPin()) {
+                    Toast.makeText(PinActivity.this, "验证成功", Toast.LENGTH_SHORT).show();
+                    lock.setLocked(false);
+                    PinActivity.this.finish();
+                }else{
+                    password.setError("错误的Pin");
+                    return;
+                }
             }
         });
     }

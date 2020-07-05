@@ -13,7 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

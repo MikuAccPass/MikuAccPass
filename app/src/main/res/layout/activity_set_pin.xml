@@ -25,6 +25,7 @@
         android:padding="7dp"
         android:layout_marginTop="300dp"
         android:layout_toRightOf="@+id/pin"
+        android:inputType="numberPassword"
         android:hint="请设置Pin"/>
 
     <Button

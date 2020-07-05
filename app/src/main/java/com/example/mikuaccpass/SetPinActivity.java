@@ -1,7 +1,5 @@
 package com.example.mikuaccpass;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -9,11 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class SetPinActivity extends AppCompatActivity {
+public class SetPinActivity extends BaseActivity {
 
     private EditText edtpin;
     private Button apply_bt;
     private SharedPreferences preferences;
+    private GlobalApplication lock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +20,7 @@ public class SetPinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_set_pin);
 
         preferences = getSharedPreferences("get_pin", MODE_PRIVATE);
+        lock = (GlobalApplication)getApplication();
     }
 
     @Override
@@ -33,19 +33,23 @@ public class SetPinActivity extends AppCompatActivity {
         apply_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String pin = edtpin.getText().toString();
-                if (pin.trim().length() == 0) {
+                String pin_str = edtpin.getText().toString();
+                if (pin_str.length() == 0) {
                     edtpin.setError("Pin值不能为空");
                     return;
                 }
 
+                int pin = Integer.parseInt(pin_str);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("Pin", pin.trim());
+                editor.putInt("Pin", pin);
                 editor.apply();
-                if (pin.equals(preferences.getString("Pin", "")))
-                    Toast.makeText(SetPinActivity.this, "Pin值存储成功", Toast.LENGTH_SHORT).show();
+                if (pin == (preferences.getInt("Pin", -1)))
+                {
+                    lock.setPin(pin);
+                    Toast.makeText(SetPinActivity.this, "Pin设置成功", Toast.LENGTH_SHORT).show();
+                    SetPinActivity.this.finish();
+                }
             }
-
         });
     }
 }
