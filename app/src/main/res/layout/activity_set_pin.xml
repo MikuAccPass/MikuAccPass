@@ -7,34 +7,36 @@
     tools:context=".SetPinActivity">
 
 
-
     <TextView
         android:id="@+id/pin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pin："
+        android:layout_centerHorizontal="true"
         android:padding="10dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="300dp"
-        android:textColor="#8B008B"/>
+        android:text="设置Pin"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_above="@+id/pin_et"
+        android:layout_marginBottom="100dp"
+        android:textColor="#8B008B" />
 
     <EditText
         android:id="@+id/pin_et"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:padding="7dp"
-        android:layout_marginTop="300dp"
-        android:layout_toRightOf="@+id/pin"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:inputType="numberPassword"
-        android:hint="请设置Pin"/>
+        android:hint="请输入Pin"/>
 
     <Button
         android:id="@+id/apply_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="应用"
-        android:layout_below="@+id/pin"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="15dp"/>
+        android:layout_below="@+id/pin_et"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
 
 </RelativeLayout>
