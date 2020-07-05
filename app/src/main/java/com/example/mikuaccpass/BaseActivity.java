@@ -8,13 +8,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BaseActivity extends AppCompatActivity {
-    GlobalApplication lock;
+    GlobalApplication global;
     private static int appCount = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        lock = (GlobalApplication) getApplication();
+        global = (GlobalApplication) getApplication();
     }
 
     @Override
@@ -26,11 +26,11 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (lock.isLocked()) {
+        if (global.isLocked()) {
             Intent finger = new Intent(this, FingerprintActivity.class);
             startActivity(finger);
         }
-        if(lock.ScreenshotPermit())
+        if(global.ScreenshotPermit())
         {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
         }
@@ -45,7 +45,7 @@ public class BaseActivity extends AppCompatActivity {
         super.onStop();
         appCount--;
         if(appCount == 0){
-            lock.setLocked(true);
+            global.setLocked(true);
         }
     }
 }

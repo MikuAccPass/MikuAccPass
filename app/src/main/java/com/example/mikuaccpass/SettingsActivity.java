@@ -14,36 +14,35 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 public class SettingsActivity extends BaseActivity {
+    private GlobalApplication global;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        global = (GlobalApplication)getApplication();
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
 
-        Button pin_btn = (Button)findViewById(R.id.pin_btn);
+        Button pin_btn = findViewById(R.id.pin_btn);
         pin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(SettingsActivity.this, SetPinActivity.class);
-                startActivity(i);
+                Intent pin_set = new Intent(SettingsActivity.this, SetPinActivity.class);
+                startActivity(pin_set);
             }
         });
 //开关还缺实际功能的控制
-        Switch shot_switch = (Switch)findViewById(R.id.shot_switch);
+        Switch shot_switch = findViewById(R.id.shot_switch);
+        shot_switch.setChecked(global.ScreenshotPermit());
+
         shot_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
-                    Toast shot_toast= Toast.makeText(SettingsActivity.this, "允许屏幕截图", Toast.LENGTH_SHORT);
-                    shot_toast.setGravity(Gravity.CENTER, 0, 0);
-                    shot_toast.show();
                     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
                 }else{
-                    Toast shot_toast = Toast.makeText(SettingsActivity.this, "禁止屏幕截图", Toast.LENGTH_SHORT);
-                    shot_toast.setGravity(Gravity.CENTER, 0, 0);
-                    shot_toast.show();
                     getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
                 }
             }

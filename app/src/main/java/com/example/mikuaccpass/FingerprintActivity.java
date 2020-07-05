@@ -14,7 +14,7 @@ import com.wei.android.lib.fingerprintidentify.FingerprintIdentify;
 import com.wei.android.lib.fingerprintidentify.base.BaseFingerprint;
 
 public class FingerprintActivity extends Activity {
-    private GlobalApplication lock;
+    private GlobalApplication global;
     private TextView tv_finger;
     private FingerprintIdentify identify;
 
@@ -25,7 +25,7 @@ public class FingerprintActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint);
 
-        lock = (GlobalApplication)getApplication();
+        global = (GlobalApplication)getApplication();
         tv_finger = findViewById(R.id.tv_finger);
 
         identify = new FingerprintIdentify(getApplicationContext());
@@ -48,7 +48,7 @@ public class FingerprintActivity extends Activity {
                 Toast succeed_toast = Toast.makeText(getApplicationContext(),"验证成功",Toast.LENGTH_LONG);
                 succeed_toast.setGravity(Gravity.CENTER,0,0);
                 succeed_toast.show();
-                lock.setLocked(false);
+                global.setLocked(false);
                 FingerprintActivity.this.finish();
             }
 

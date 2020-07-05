@@ -12,7 +12,7 @@ public class SetPinActivity extends BaseActivity {
     private EditText edtpin;
     private Button apply_bt;
     private SharedPreferences preferences;
-    private GlobalApplication lock;
+    private GlobalApplication global;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class SetPinActivity extends BaseActivity {
         setContentView(R.layout.activity_set_pin);
 
         preferences = getSharedPreferences("get_pin", MODE_PRIVATE);
-        lock = (GlobalApplication)getApplication();
+        global = (GlobalApplication)getApplication();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class SetPinActivity extends BaseActivity {
                 editor.apply();
                 if (pin == (preferences.getInt("Pin", -1)))
                 {
-                    lock.setPin(pin);
+                    global.setPin(pin);
                     Toast.makeText(SetPinActivity.this, "Pin设置成功", Toast.LENGTH_SHORT).show();
                     SetPinActivity.this.finish();
                 }

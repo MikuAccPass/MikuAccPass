@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 public class PinActivity extends Activity {
-    private GlobalApplication lock;
+    private GlobalApplication global;
     private Button btn_main;
     private EditText password;
 
@@ -21,16 +21,16 @@ public class PinActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin);
         btn_main = findViewById(R.id.btn_main);
-        lock = (GlobalApplication)getApplication();
+        global = (GlobalApplication)getApplication();
         password = findViewById(R.id.Password);
 
         btn_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int pin_input = Integer.parseInt(password.getText().toString());
-                if(pin_input == lock.getPin()) {
+                if(pin_input == global.getPin()) {
                     Toast.makeText(PinActivity.this, "验证成功", Toast.LENGTH_SHORT).show();
-                    lock.setLocked(false);
+                    global.setLocked(false);
                     PinActivity.this.finish();
                 }else{
                     password.setError("错误的Pin");
