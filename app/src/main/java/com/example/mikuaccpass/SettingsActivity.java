@@ -33,7 +33,7 @@ public class SettingsActivity extends BaseActivity {
                 startActivity(pin_set);
             }
         });
-//开关还缺实际功能的控制
+
         Switch shot_switch = findViewById(R.id.shot_switch);
         shot_switch.setChecked(global.ScreenshotPermit());
 
@@ -48,6 +48,7 @@ public class SettingsActivity extends BaseActivity {
             }
         });
 
+        //开关还缺实际功能的控制
         Switch fill_switch = (Switch)findViewById(R.id.fill_switch);
         fill_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -66,6 +67,7 @@ public class SettingsActivity extends BaseActivity {
             }
         });
 
+        //开关还缺实际功能的控制
         Switch fingerprint_switch = (Switch)findViewById(R.id.fingerprint_switch);
         fingerprint_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

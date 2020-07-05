@@ -27,6 +27,11 @@ public class PinActivity extends Activity {
         btn_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (password.getText().toString().equals("")){
+                    password.setError("请输入Pin");
+                    return;
+                }
+
                 int pin_input = Integer.parseInt(password.getText().toString());
                 if(pin_input == global.getPin()) {
                     Toast.makeText(PinActivity.this, "验证成功", Toast.LENGTH_SHORT).show();
