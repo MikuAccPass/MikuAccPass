@@ -17,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomepageActivity extends AppCompatActivity {
+public class HomepageActivity extends BaseActivity {
     private EditText edtSaveKey, edtSaveValue,edtSaveStation;
     private Button btnSave;
     private SharedPreferences preferences;
