@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class RecordActivity extends AppCompatActivity {
+public class RecordActivity extends BaseActivity {
 
     private EditText et_username;
     private EditText et_password;

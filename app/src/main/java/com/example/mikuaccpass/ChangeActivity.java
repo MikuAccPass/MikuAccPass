@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ChangeActivity extends AppCompatActivity {
+public class ChangeActivity extends BaseActivity {
 
     private EditText et_username;
     private EditText et_password;
