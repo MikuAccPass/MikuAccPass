@@ -61,6 +61,42 @@ public class InfoStorage {
         editor2.commit();
     }
 
+    public static void saveInfo2(Context context,String appname, String username, String password,String appkey) {
+
+        //得到key
+        SecretKey key = InfoStorage.readKey(InfoStorage.getPath(appkey));
+        if (key == null) {
+            key = get3DESKey();
+
+            //保存key
+            InfoStorage.saveKey(key, InfoStorage.getPath(appkey));
+        }
+        //加密username和password
+        byte[] usernameByte = encrypt3DES(username, key);
+        byte[] passwordByte = encrypt3DES(password, key);
+        username = Base64.encodeToString(usernameByte, Base64.DEFAULT);
+        password = Base64.encodeToString(passwordByte,Base64.DEFAULT);
+        System.out.println("文件为"+appname);
+        SharedPreferences sharedPreferences = context. getSharedPreferences(appname, Context.MODE_PRIVATE);
+        //SharedPreferences preferences = context.getSharedPreferences("share",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        // SharedPreferences.Editor editor2 = preferences.edit();
+        //int n = preferences.getInt("number",0);//n记载了数据数目的多少
+        // n=n+1;
+        // String p =n+"";
+        //editor2.putInt("number",n);//editor2代表本地全局变量的修改
+        //editor2.putString(p,appname);
+        editor.putString("username", username);
+        editor.putString("password", password);
+        editor.putString("appkey",appkey);
+        editor.apply();
+        editor.commit();
+        // editor2.apply();
+        // editor2.commit();
+    }
+
+
+
     //读取账号密码
     public static String[] readInfo(Context context,String appname,String appkey) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(appname, Context.MODE_PRIVATE);
@@ -126,7 +162,7 @@ public class InfoStorage {
             return null;
         }
         //获得手机外部存储路径?
-        File file = new File("/data/data/com.example.myapplication14d_prefs/appkeys");
+        File file = new File("/data/data/com.example.mikuaccpass/shared_prefs/appkeys");
         //是否存在是否存在是否为文件夹
         if (!file.exists() || !file.isDirectory()) {
             //如果父文件夹不存在并且最后一级子文件夹不存在，它就自动新建所有路经里写的文件夹；如果父文件夹存在，它就直接在已经存在的父文件夹下新建子文件夹

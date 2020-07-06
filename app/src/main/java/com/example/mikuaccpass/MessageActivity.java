@@ -45,7 +45,7 @@ public class MessageActivity extends AppCompatActivity {
             btnChange.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent2 = new Intent(MessageActivity.this, RecordActivity.class);
+                    Intent intent2 = new Intent(MessageActivity.this, ChangeActivity.class);
                     intent2.putExtra("data",name);
                     // intent2.putExtra("data2",nameid);
                     startActivity(intent2);
