@@ -34,11 +34,8 @@ public class SplashActivity extends BaseActivity {
 
                     Intent intent=new Intent();
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.setClass(SplashActivity.this,FingerprintActivity.class);
+                    intent.setClass(SplashActivity.this,PinActivity.class);
                     startActivity(intent);
-
-                    startActivity(new Intent(SplashActivity.this, PinActivity.class));
-                    finish();
                     //break;
 
                 case 1:
