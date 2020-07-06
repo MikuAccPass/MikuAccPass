@@ -31,10 +31,16 @@ public class SplashActivity extends BaseActivity {
         public void handleMessage(Message msg){
             switch (msg.what){
                 case 0:
+
                     Intent intent=new Intent();
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.setClass(SplashActivity.this,FingerprintActivity.class);
                     startActivity(intent);
+
+                    startActivity(new Intent(SplashActivity.this, PinActivity.class));
+                    finish();
+                    //break;
+
                 case 1:
                     Intent intent1=new Intent();
                     intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);

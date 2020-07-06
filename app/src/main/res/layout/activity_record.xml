@@ -1,103 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".HomepageActivity">
+    android:orientation="vertical" >
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/et_appname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="平台:"
-            android:textSize="20sp" />
-
-
-        <EditText
-            android:id="@+id/edt_save_station"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:ems="10"
-            android:hint="请输入平台"
-            android:inputType="textPersonName" />
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:hint="请输入应用名称"
+        android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/et_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:hint="请输入用户名"
+        android:inputType="textPersonName" />
 
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="用户名:"
-            android:textColor="@android:color/holo_orange_dark"
-            android:textSize="20sp" />
-
-
-        <EditText
-            android:id="@+id/edt_save_key"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:ems="10"
-            android:hint="请输入用户名"
-            android:inputType="textPersonName" />
-
-    </LinearLayout>
-
-
-
-    <LinearLayout
+    <EditText
+        android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="密码:"
-            android:textSize="20sp" />
-
-
-        <EditText
-            android:id="@+id/edt_save_value"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:ems="10"
-            android:hint="请输入密码"
-            android:inputType="textPersonName" />
-
-    </LinearLayout>
+        android:inputType="textPassword"
+        android:hint="请重新输入密码" />
 
     <Button
-        android:id="@+id/btn_save"
+        android:onClick="click"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="存储" />
-
-    <TextView
-        android:id="@+id/tv_read"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=" " />
-
+        android:text="确定"/>
 
 </LinearLayout>
