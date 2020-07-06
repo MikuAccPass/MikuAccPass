@@ -21,7 +21,7 @@ public class SplashActivity extends BaseActivity {
         public void handleMessage(Message msg){
             switch (msg.what){
                 case 0:
-                    startActivity(new Intent(SplashActivity.this, FingerprintActivity.class));
+                    startActivity(new Intent(SplashActivity.this, PinActivity.class));
                     finish();
                     //break;
                 case 1:
