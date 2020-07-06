@@ -3,6 +3,7 @@ package com.example.mikuaccpass;
 import android.content.Intent;
 import android.os.Bundle;
 
+
 public class MainActivity extends BaseActivity {
 
     @Override
@@ -10,8 +11,9 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView (R.layout.activity_main);
 
-        Intent i = new Intent(MainActivity.this, SettingsActivity.class);
+        Intent i = new Intent(MainActivity.this, HomepageActivity.class);
         startActivity(i);
+
     }
 }
 
