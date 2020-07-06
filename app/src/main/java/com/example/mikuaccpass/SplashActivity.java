@@ -23,11 +23,11 @@ public class SplashActivity extends BaseActivity {
                 case 0:
                     startActivity(new Intent(SplashActivity.this, FingerprintActivity.class));
                     finish();
-                    break;
+                    //break;
                 case 1:
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     finish();
-                    break;
+                   // break;
                 default:
                     break;
             }
@@ -52,9 +52,9 @@ public class SplashActivity extends BaseActivity {
 
     private void init(){
         if(global.getPin()==-1){
-            handler.sendEmptyMessageDelayed(1, 2000);
+            handler.sendEmptyMessageDelayed(1, 2500);
         }else{
-            handler.sendEmptyMessageDelayed(0, 2000);
+            handler.sendEmptyMessageDelayed(0, 2500);
         }
     }
 }
