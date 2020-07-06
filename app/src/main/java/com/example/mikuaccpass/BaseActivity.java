@@ -26,7 +26,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (global.isLocked()) {
+        if (global.isLocked()&&global.getPin()!=-1) {
             if(global.isFingerprint_enable()) {
                 Intent finger = new Intent(this, FingerprintActivity.class);
                 startActivity(finger);
