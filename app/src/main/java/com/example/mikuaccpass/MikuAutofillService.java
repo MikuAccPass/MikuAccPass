@@ -49,10 +49,6 @@ public class MikuAutofillService extends AutofillService {
             }
         }
 
-//        FillResponse response = new FillResponse.Builder()
-//                .addDataset(loginDataSet)
-//                .build();
-
         fillCallback.onSuccess(responseBuilder.build());
     }
 
