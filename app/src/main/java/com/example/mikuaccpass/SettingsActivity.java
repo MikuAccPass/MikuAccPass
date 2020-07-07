@@ -33,7 +33,7 @@ public class SettingsActivity extends Fragment {
 
         View root = inflater.inflate(R.layout.activity_settings, container, false);
         global = (GlobalApplication)getActivity().getApplication();
-        preferences = getActivity().getSharedPreferences("security", Context.MODE_PRIVATE);
+        preferences = getActivity().getSharedPreferences("setting", Context.MODE_PRIVATE);
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
 
         Button pin_btn = root.findViewById(R.id.pin_btn);
@@ -60,6 +60,7 @@ public class SettingsActivity extends Fragment {
         });
 
         final Switch fill_switch = root.findViewById(R.id.fill_switch);
+        fill_switch.setChecked(preferences.getBoolean("autofill_enable",false));
         fill_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
