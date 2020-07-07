@@ -19,9 +19,11 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.text.InputType.*;
+
 public class MikuAutofillService extends AutofillService {
     private List<AssistStructure.ViewNode> fields = new ArrayList<>();
-    private  List<Acount> acountList = new ArrayList<>();
+    private List<Acount> acountList = new ArrayList<>();
     private SharedPreferences preferences;
 
     @Override
@@ -31,27 +33,19 @@ public class MikuAutofillService extends AutofillService {
         AssistStructure structure = context.get(context.size() - 1).getStructure();
         traverseStructure(structure);
 
-        if (fields.size()<2)
-            return;
-
         FillResponse.Builder responseBuilder = new FillResponse.Builder();
-        for(int i=0;i<fields.size();i+=2){
-            for(int j =0;j<acountList.size();j++){
+        for (int i = 0; i < fields.size(); i++) {
+            for (int j = 0; j < acountList.size(); j++) {
                 RemoteViews usernamePresentation = new RemoteViews(getPackageName(), android.R.layout.simple_list_item_1);
                 usernamePresentation.setTextViewText(android.R.id.text1, acountList.get(j).getName());
 
                 Dataset loginDataSet = new Dataset.Builder()
-                        .setValue(fields.get(i).getAutofillId(), AutofillValue.forText(acountList.get(j).getName()),usernamePresentation)
-                        .setValue(fields.get(i+1).getAutofillId(), AutofillValue.forText(acountList.get(j).getPassword()),usernamePresentation)
+                        .setValue(fields.get(i).getAutofillId(), AutofillValue.forText(acountList.get(j).getPassword()), usernamePresentation)
                         .build();
 
                 responseBuilder.addDataset(loginDataSet);
             }
         }
-
-//        FillResponse response = new FillResponse.Builder()
-//                .addDataset(loginDataSet)
-//                .build();
 
         fillCallback.onSuccess(responseBuilder.build());
     }
@@ -72,31 +66,32 @@ public class MikuAutofillService extends AutofillService {
     }
 
     public void traverseNode(AssistStructure.ViewNode viewNode) {
-        if(viewNode.getAutofillHints() != null && viewNode.getAutofillHints().length > 0) {
+        if (viewNode.getInputType() == (TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD)
+                || viewNode.getInputType() == (TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_VISIBLE_PASSWORD)
+                || viewNode.getInputType() == (TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_VISIBLE_PASSWORD)
+                || viewNode.getInputType() == (TYPE_CLASS_NUMBER | TYPE_NUMBER_VARIATION_PASSWORD)
+                || viewNode.getInputType() == (TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_WEB_PASSWORD))
             fields.add(viewNode);
-        }
 
-        for(int i = 0; i < viewNode.getChildCount(); i++) {
+        for (int i = 0; i < viewNode.getChildCount(); i++) {
             AssistStructure.ViewNode childNode = viewNode.getChildAt(i);
             traverseNode(childNode);
         }
     }
 
-    private void getAccounts()
-    {
-        preferences=getSharedPreferences("share",MODE_PRIVATE);
+    private void getAccounts() {
+        preferences = getSharedPreferences("share", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        int n=preferences.getInt("number",0);
-        editor.putInt("number",n);
-        for (int i=1;i<=n;i++)
-        {
-            String appname=i+"";
-            appname = preferences.getString(appname,"");//获取appname为命名的相关sharepreference文件夹名字
-            SharedPreferences pref=getSharedPreferences(appname,MODE_PRIVATE);
-            String appkey = pref.getString("appkey","");
+        int n = preferences.getInt("number", 0);
+        editor.putInt("number", n);
+        for (int i = 1; i <= n; i++) {
+            String appname = i + "";
+            appname = preferences.getString(appname, "");//获取appname为命名的相关sharepreference文件夹名字
+            SharedPreferences pref = getSharedPreferences(appname, MODE_PRIVATE);
+            String appkey = pref.getString("appkey", "");
             InfoStorage infostorage = null;
-            String[] content=infostorage.readInfo(this,appname,appkey);
-            Acount x = new Acount(appname,content[0],content[1], R.drawable.ic_launcher_background);
+            String[] content = infostorage.readInfo(this, appname, appkey);
+            Acount x = new Acount(appname, content[0], content[1], R.drawable.ic_launcher_background);
             acountList.add(x);
         }
         editor.apply();
