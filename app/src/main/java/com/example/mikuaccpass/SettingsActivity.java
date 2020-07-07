@@ -1,16 +1,18 @@
 package com.example.mikuaccpass;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.autofill.AutofillManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -24,7 +26,7 @@ public class SettingsActivity extends BaseActivity {
         setContentView(R.layout.activity_settings);
 
         global = (GlobalApplication)getApplication();
-        preferences = getSharedPreferences("security", MODE_PRIVATE);
+        preferences = getSharedPreferences("setting", MODE_PRIVATE);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
 
@@ -52,25 +54,51 @@ public class SettingsActivity extends BaseActivity {
         });
 
         //开关还缺实际功能的控制
-        Switch fill_switch = (Switch)findViewById(R.id.fill_switch);
+        final Switch fill_switch = findViewById(R.id.fill_switch);
+        fill_switch.setChecked(preferences.getBoolean("autofill_enable",false));
         fill_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if(isChecked){
-                    Toast fill_toast= Toast.makeText(SettingsActivity.this, "自动填充已开启", Toast.LENGTH_SHORT);
-                    fill_toast.setGravity(Gravity.CENTER, 0, 0);
-                    fill_toast.show();
-
+                    if(Build.VERSION.SDK_INT<26){
+                        fill_switch.setChecked(false);
+                        Toast fill_toast = Toast.makeText(SettingsActivity.this, "该功能需要安卓8.0以上支持", Toast.LENGTH_SHORT);
+                        fill_toast.setGravity(Gravity.CENTER, 0, 0);
+                        fill_toast.show();
+                        return;
+                    }
+                    if(!getSystemService(AutofillManager.class).hasEnabledAutofillServices()){
+                        AlertDialog.Builder pinDialog = new AlertDialog.Builder(SettingsActivity.this)
+                                .setCancelable(false)
+                                .setTitle("自动填充服务未启动")
+                                .setMessage("为了正常使用，请前往设置-系统-语言和输入法-高级-自动填充服务，选择“Miku Autofill Service”。")
+                                .setPositiveButton("前往设置", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        startActivity(new Intent(Settings.ACTION_REQUEST_SET_AUTOFILL_SERVICE));
+                                    }
+                                })
+                                .setNegativeButton("算了算了", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        fill_switch.setChecked(false);
+                                    }
+                                });
+                        pinDialog.show();
+                    }
+                    else {
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putBoolean("autofill_enable", true);
+                        editor.apply();
+                    }
                 }else{
-                    Toast fill_toast = Toast.makeText(SettingsActivity.this, "自动填充已关闭", Toast.LENGTH_SHORT);
-                    fill_toast.setGravity(Gravity.CENTER, 0, 0);
-                    fill_toast.show();
-
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putBoolean("autofill_enable", false);
+                    editor.apply();
                 }
             }
         });
 
-        //开关还缺实际功能的控制
         final Switch fingerprint_switch = (Switch)findViewById(R.id.fingerprint_switch);
         fingerprint_switch.setChecked(global.isFingerprint_enable());
         fingerprint_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

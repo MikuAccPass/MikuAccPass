@@ -21,11 +21,14 @@ import java.util.List;
 
 public class MikuAutofillService extends AutofillService {
     private List<AssistStructure.ViewNode> fields = new ArrayList<>();
-    private List<Acount> acountList = new ArrayList<>();
+    private List<Acount> accountList = new ArrayList<>();
     private SharedPreferences preferences;
 
     @Override
     public void onFillRequest(@NonNull FillRequest fillRequest, @NonNull CancellationSignal cancellationSignal, @NonNull FillCallback fillCallback) {
+        preferences = getSharedPreferences("setting", MODE_PRIVATE);
+        if(!preferences.getBoolean("autofill_enable",false))
+            return;
         getAccounts();
         List<FillContext> context = fillRequest.getFillContexts();
         AssistStructure structure = context.get(context.size() - 1).getStructure();
@@ -33,15 +36,15 @@ public class MikuAutofillService extends AutofillService {
 
         FillResponse.Builder responseBuilder = new FillResponse.Builder();
         for (int i = 0; i < fields.size(); i++) {
-            for (int j = 0; j < acountList.size(); j++) {
+            for (int j = 0; j < accountList.size(); j++) {
                 RemoteViews usernamePresentation = new RemoteViews(getPackageName(), android.R.layout.simple_list_item_1);
-                usernamePresentation.setTextViewText(android.R.id.text1, acountList.get(j).getName());
+                    usernamePresentation.setTextViewText(android.R.id.text1, accountList.get(j).getName());
 
-                Dataset loginDataSet = new Dataset.Builder()
-                        .setValue(fields.get(i).getAutofillId(), AutofillValue.forText(acountList.get(j).getPassword()), usernamePresentation)
-                        .build();
+                    Dataset loginDataSet = new Dataset.Builder()
+                            .setValue(fields.get(i).getAutofillId(), AutofillValue.forText(accountList.get(j).getPassword()), usernamePresentation)
+                            .build();
 
-                responseBuilder.addDataset(loginDataSet);
+                    responseBuilder.addDataset(loginDataSet);
             }
         }
 
@@ -89,7 +92,7 @@ public class MikuAutofillService extends AutofillService {
             InfoStorage infostorage = null;
             String[] content = infostorage.readInfo(this, appname, appkey);
             Acount x = new Acount(appname, content[0], content[1], R.drawable.ic_launcher_background);
-            acountList.add(x);
+            accountList.add(x);
         }
         editor.apply();
     }

@@ -25,7 +25,7 @@ public class GlobalApplication extends Application {
         isLocked = true;
         screenshotPermit=false;
 
-        preferences = getSharedPreferences("security", MODE_PRIVATE);
+        preferences = getSharedPreferences("setting", MODE_PRIVATE);
         pin = preferences.getInt("Pin", -1);
         if(pin == -1)
             isLocked = false;
@@ -59,4 +59,6 @@ public class GlobalApplication extends Application {
     public int getPin() {
         return pin;
     }
+
+
 }
