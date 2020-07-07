@@ -38,16 +38,24 @@ public class HomepageActivity extends Fragment {
     private String saveValue;
     private String saveStation;
     private FloatingActionButton btnplus,btnSetting;
-    private  List<Acount> acountList = new ArrayList<>();
+
+    private SearchView searchView;  //搜索框
+    private ListView listView ;
+
+    private List<Acount> acountList = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.activity_homepage, container, false);
+
+        listView = root.findViewById(R.id.list_view);
+        searchView =  root.findViewById(R.id.searchView);
+
         preferences=getActivity().getSharedPreferences("share",MODE_PRIVATE);
         final SharedPreferences.Editor editor = preferences.edit();
 
-        initFruits();//初始化水果数据
+       /* initFruits();//初始化水果数据
 
         AcountAdapter adapter = new AcountAdapter(getActivity(),
                 R.layout.listview, acountList);
@@ -55,7 +63,7 @@ public class HomepageActivity extends Fragment {
         //  MainActivity.this,android.R.layout.simple_list_item_1,data);
         final ListView listView = root.findViewById(R.id.list_view);
         listView.setAdapter(adapter);
-
+*/
         btnplus = root.findViewById(R.id.btn_plus);
 
         btnplus.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +104,29 @@ public class HomepageActivity extends Fragment {
                 // }
             }
         });
+        searchView.setSearchWay(new SearchView.SearchWay<Acount>(){
+
+            @Override
+            public List<Acount> getData() {
+                //返回数据源
+                return acountList;
+            }
+
+            @Override
+            public boolean matchItem(Acount item, String s) {
+                //如果串item中包含串s，则匹配
+                return (item.getStation().contains(s)||item.getName().contains(s));
+            }
+
+            @Override
+            public void update(List<Acount> resultList) {
+                //更新ListView的数据
+                setListViewData(resultList);
+            }
+        });
+
+        initFruits();
+
         return root;
     }
     private void initFruits()
@@ -115,6 +146,12 @@ public class HomepageActivity extends Fragment {
             acountList.add(x);
         }
         editor.apply();
+        setListViewData(acountList);
     }
-
+    private void setListViewData(List<Acount> list){
+        //设置ListView的适配器
+        AcountAdapter adapter = new AcountAdapter(getActivity(),
+                R.layout.listview, list);
+        listView.setAdapter(adapter);
+    }
 }

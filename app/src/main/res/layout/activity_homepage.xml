@@ -3,6 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/darker_gray"
+        android:padding="8dp">
+
+        <com.example.mikuaccpass.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white" />
+
+    </LinearLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_plus"
@@ -14,12 +28,14 @@
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <ListView
+        android:layout_marginTop="50dp"
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
     </ListView>
+
 
 
 </RelativeLayout>
