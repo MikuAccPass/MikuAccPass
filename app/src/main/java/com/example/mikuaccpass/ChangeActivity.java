@@ -27,7 +27,9 @@ public class ChangeActivity extends BaseActivity {
         et_password = (EditText) findViewById(R.id.et_password1);
 
         Intent i=getIntent();
-        tv_appname.setText(i.getStringExtra("data"));//平台名从msgActivity中传进来
+        tv_appname.setText(i.getStringExtra("data1"));//平台名从msgActivity中传进来
+        et_username.setText(i.getStringExtra("data2"));
+        et_password.setText(i.getStringExtra("data3"));
 
     }
     @SuppressLint("WrongConstant")

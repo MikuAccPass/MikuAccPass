@@ -37,16 +37,20 @@ public class MessageActivity extends BaseActivity {
     private  void initEvent(){
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            final String name=extras.getString("activity1");
+            final String station=extras.getString("activity1");
+            final String name=extras.getString("activity2");
+            final String password=extras.getString("activity3");
             //  final String nameid=extras.getString("activity4");
-            tvstation.setText(name);
-            tvname.setText(extras.getString("activity2"));
-            tvpw.setText(extras.getString("activity3"));
+            tvstation.setText(station);
+            tvname.setText(name);
+            tvpw.setText(password);
             btnChange.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent2 = new Intent(MessageActivity.this, ChangeActivity.class);
-                    intent2.putExtra("data",name);
+                    intent2.putExtra("data1",station);
+                    intent2.putExtra("data2",name);
+                    intent2.putExtra("data3",password);
                     // intent2.putExtra("data2",nameid);
                     startActivity(intent2);
                 }
