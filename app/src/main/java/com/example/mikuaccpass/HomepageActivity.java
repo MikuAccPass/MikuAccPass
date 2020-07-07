@@ -1,21 +1,35 @@
 package com.example.mikuaccpass;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import com.example.mikuaccpass.Acount;
+import com.example.mikuaccpass.AcountAdapter;
+import com.example.mikuaccpass.InfoStorage;
+import com.example.mikuaccpass.MessageActivity;
+import com.example.mikuaccpass.R;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
+import com.example.mikuaccpass.RecordActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomepageActivity extends BaseActivity {
+import static android.content.Context.MODE_PRIVATE;
+
+public class HomepageActivity extends Fragment {
     private EditText edtSaveKey, edtSaveValue,edtSaveStation;
     private Button btnSave;
     private SharedPreferences preferences;
@@ -26,54 +40,40 @@ public class HomepageActivity extends BaseActivity {
     private FloatingActionButton btnplus,btnSetting;
     private  List<Acount> acountList = new ArrayList<>();
 
-   /*private String[] data = {"apple","bannner","orange","watermelon","pear","grape",
-           "pineapple","strawberry","cherry","mango","apple","bannner","orange",
-          "watermelon","pear","grape", "pineapple","strawberry","cherry","mango"
-   };*/
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homepage);
-        preferences=getSharedPreferences("share",MODE_PRIVATE);
+        View root = inflater.inflate(R.layout.activity_homepage, container, false);
+        preferences=getActivity().getSharedPreferences("share",MODE_PRIVATE);
         final SharedPreferences.Editor editor = preferences.edit();
 
         initFruits();//初始化水果数据
 
-        AcountAdapter adapter = new AcountAdapter(HomepageActivity.this,
+        AcountAdapter adapter = new AcountAdapter(getActivity(),
                 R.layout.listview, acountList);
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(
         //  MainActivity.this,android.R.layout.simple_list_item_1,data);
-        final ListView listView = findViewById(R.id.list_view);
+        final ListView listView = root.findViewById(R.id.list_view);
         listView.setAdapter(adapter);
 
-        btnSetting=findViewById(R.id.imageButton);
-        btnplus = findViewById(R.id.btn_plus);
+        btnplus = root.findViewById(R.id.btn_plus);
 
         btnplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomepageActivity.this, RecordActivity.class));
+                startActivity(new Intent(getActivity(), RecordActivity.class));
             }
         });
-        btnSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomepageActivity.this, SettingsActivity.class));
-            }
-        });
-
         //注册监听器
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               Acount fruit = acountList.get(position);
+                Acount fruit = acountList.get(position);
                 String station=fruit.getStation();
                 String name=fruit.getName();
                 String password=fruit.getPassword();
                 //   String nameid=fruit.getNameid();
-                Intent intent1 = new Intent(HomepageActivity.this, MessageActivity.class);
+                Intent intent1 = new Intent(getActivity(), MessageActivity.class);
                 intent1.putExtra("activity1", station);
                 intent1.putExtra("activity2", name);
                 intent1.putExtra("activity3", password);
@@ -96,9 +96,8 @@ public class HomepageActivity extends BaseActivity {
                 // }
             }
         });
+        return root;
     }
-
-
     private void initFruits()
     {
         SharedPreferences.Editor editor = preferences.edit();
@@ -108,12 +107,12 @@ public class HomepageActivity extends BaseActivity {
         {
             String appname=i+"";
             appname = preferences.getString(appname,"");//获取appname为命名的相关sharepreference文件夹名字
-            SharedPreferences pref=getSharedPreferences(appname,MODE_PRIVATE);
+            SharedPreferences pref=this.getActivity().getSharedPreferences(appname, MODE_PRIVATE);
             String appkey = pref.getString("appkey","");
             InfoStorage infostorage = null;
-            String[] content=infostorage.readInfo(this,appname,appkey);
+            String[] content=infostorage.readInfo(getActivity(),appname,appkey);
             Acount x = new Acount(appname,content[0],content[1], R.drawable.ic_launcher_background);
-           acountList.add(x);
+            acountList.add(x);
         }
         editor.apply();
     }

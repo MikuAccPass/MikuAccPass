@@ -2,5 +2,6 @@
     <string name="app_name">Miku</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="setting">Setting</string>
+    <string name="title_home">Home</string>
+    <string name="title_settings">Settings</string>
 </resources>
