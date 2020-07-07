@@ -19,8 +19,6 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.text.InputType.*;
-
 public class MikuAutofillService extends AutofillService {
     private List<AssistStructure.ViewNode> fields = new ArrayList<>();
     private List<Acount> acountList = new ArrayList<>();
@@ -66,11 +64,10 @@ public class MikuAutofillService extends AutofillService {
     }
 
     public void traverseNode(AssistStructure.ViewNode viewNode) {
-        if (viewNode.getInputType() == (TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD)
-                || viewNode.getInputType() == (TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_VISIBLE_PASSWORD)
-                || viewNode.getInputType() == (TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_VISIBLE_PASSWORD)
-                || viewNode.getInputType() == (TYPE_CLASS_NUMBER | TYPE_NUMBER_VARIATION_PASSWORD)
-                || viewNode.getInputType() == (TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_WEB_PASSWORD))
+        if (viewNode.getInputType() == 0x00000081
+                || viewNode.getInputType() == 0x00000091
+                || viewNode.getInputType() == 0x000000e1
+                || viewNode.getInputType() == 0x00000012)
             fields.add(viewNode);
 
         for (int i = 0; i < viewNode.getChildCount(); i++) {
