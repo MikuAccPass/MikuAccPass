@@ -1,6 +1,7 @@
 package com.example.mikuaccpass;
 
 import android.app.assist.AssistStructure;
+import android.content.SharedPreferences;
 import android.os.CancellationSignal;
 import android.service.autofill.AutofillService;
 import android.service.autofill.Dataset;
@@ -20,28 +21,39 @@ import java.util.List;
 
 public class MikuAutofillService extends AutofillService {
     private List<AssistStructure.ViewNode> fields = new ArrayList<>();
+    private  List<Acount> acountList = new ArrayList<>();
+    private SharedPreferences preferences;
 
     @Override
     public void onFillRequest(@NonNull FillRequest fillRequest, @NonNull CancellationSignal cancellationSignal, @NonNull FillCallback fillCallback) {
+        getAccounts();
         List<FillContext> context = fillRequest.getFillContexts();
         AssistStructure structure = context.get(context.size() - 1).getStructure();
         traverseStructure(structure);
 
-        RemoteViews usernamePresentation = new RemoteViews(getPackageName(), android.R.layout.simple_list_item_1);
-        usernamePresentation.setTextViewText(android.R.id.text1, "Username");
-        RemoteViews passwordPresentation = new RemoteViews(getPackageName(), android.R.layout.simple_list_item_1);
-        passwordPresentation.setTextViewText(android.R.id.text1, "Password");
+        if (fields.size()<2)
+            return;
 
-        Dataset loginDataSet = new Dataset.Builder()
-                .setValue(fields.get(0).getAutofillId(), AutofillValue.forText("username"),usernamePresentation)
-                .setValue(fields.get(1).getAutofillId(), AutofillValue.forText("password"),passwordPresentation)
-                .build();
+        FillResponse.Builder responseBuilder = new FillResponse.Builder();
+        for(int i=0;i<fields.size();i+=2){
+            for(int j =0;j<acountList.size();j++){
+                RemoteViews usernamePresentation = new RemoteViews(getPackageName(), android.R.layout.simple_list_item_1);
+                usernamePresentation.setTextViewText(android.R.id.text1, acountList.get(j).getName());
 
-        FillResponse response = new FillResponse.Builder()
-                .addDataset(loginDataSet)
-                .build();
+                Dataset loginDataSet = new Dataset.Builder()
+                        .setValue(fields.get(i).getAutofillId(), AutofillValue.forText(acountList.get(j).getName()),usernamePresentation)
+                        .setValue(fields.get(i+1).getAutofillId(), AutofillValue.forText(acountList.get(j).getPassword()),usernamePresentation)
+                        .build();
 
-        fillCallback.onSuccess(response);
+                responseBuilder.addDataset(loginDataSet);
+            }
+        }
+
+//        FillResponse response = new FillResponse.Builder()
+//                .addDataset(loginDataSet)
+//                .build();
+
+        fillCallback.onSuccess(responseBuilder.build());
     }
 
     @Override
@@ -68,5 +80,25 @@ public class MikuAutofillService extends AutofillService {
             AssistStructure.ViewNode childNode = viewNode.getChildAt(i);
             traverseNode(childNode);
         }
+    }
+
+    private void getAccounts()
+    {
+        preferences=getSharedPreferences("share",MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        int n=preferences.getInt("number",0);
+        editor.putInt("number",n);
+        for (int i=1;i<=n;i++)
+        {
+            String appname=i+"";
+            appname = preferences.getString(appname,"");//获取appname为命名的相关sharepreference文件夹名字
+            SharedPreferences pref=getSharedPreferences(appname,MODE_PRIVATE);
+            String appkey = pref.getString("appkey","");
+            InfoStorage infostorage = null;
+            String[] content=infostorage.readInfo(this,appname,appkey);
+            Acount x = new Acount(appname,content[0],content[1], R.drawable.ic_launcher_background);
+            acountList.add(x);
+        }
+        editor.apply();
     }
 }
