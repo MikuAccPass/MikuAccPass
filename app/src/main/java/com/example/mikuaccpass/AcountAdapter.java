@@ -34,10 +34,12 @@ public class AcountAdapter extends ArrayAdapter<Acount> {
             view = convertView;
         }
         ImageView fruitImage = view.findViewById(R.id.Acount_image);
+        TextView fruitStation = view.findViewById(R.id.Acount_station);
         TextView fruitName = view.findViewById(R.id.Acount_name);
 
         fruitImage.setImageResource(fruit.getImageId());
-        fruitName.setText(fruit.getName());
+        fruitStation.setText("平台名："+fruit.getStation());
+        fruitName.setText("用户名："+fruit.getName());
         return view;
 
     }
