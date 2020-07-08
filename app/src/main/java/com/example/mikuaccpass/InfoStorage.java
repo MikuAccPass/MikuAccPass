@@ -22,13 +22,14 @@ import javax.crypto.spec.DESedeKeySpec;
 public class InfoStorage {
     /**
      * 保存账号密码
+     *
      * @param context
      * @param appname
      * @param username
      * @param password
      */
     //对数据进行加密
-    public static void saveInfo(Context context,String appname, String username, String password,String appkey,String origin_appname) {
+    public static void saveInfo(Context context, String appname, String username, String password, String appkey, String origin_appname) {
 
         //得到key
         SecretKey key = InfoStorage.readKey(InfoStorage.getPath(appkey));
@@ -41,28 +42,28 @@ public class InfoStorage {
         byte[] usernameByte = encrypt3DES(username, key);
         byte[] passwordByte = encrypt3DES(password, key);
         username = Base64.encodeToString(usernameByte, Base64.DEFAULT);
-        password = Base64.encodeToString(passwordByte,Base64.DEFAULT);
-        System.out.println("文件为"+appname);
-        SharedPreferences sharedPreferences = context. getSharedPreferences(appname, Context.MODE_PRIVATE);
-        SharedPreferences preferences = context.getSharedPreferences("share",Context.MODE_PRIVATE);
+        password = Base64.encodeToString(passwordByte, Base64.DEFAULT);
+        System.out.println("文件为" + appname);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(appname, Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences("share", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         SharedPreferences.Editor editor2 = preferences.edit();
-        int n = preferences.getInt("number",0);//n记载了数据数目的多少
-        n=n+1;
-        String p =n+"";
-        editor2.putInt("number",n);//editor2代表本地全局变量的修改
-        editor2.putString(p,appname);
+        int n = preferences.getInt("number", 0);//n记载了数据数目的多少
+        n = n + 1;
+        String p = n + "";
+        editor2.putInt("number", n);//editor2代表本地全局变量的修改
+        editor2.putString(p, appname);
         editor.putString("username", username);
         editor.putString("password", password);
-        editor.putString("appkey",appkey);
-        editor.putString("origin_appname",origin_appname);
+        editor.putString("appkey", appkey);
+        editor.putString("origin_appname", origin_appname);
         editor.apply();
         editor.commit();
         editor2.apply();
         editor2.commit();
     }
 
-    public static void saveInfo2(Context context,String appname, String username, String password,String appkey) {
+    public static void saveInfo2(Context context, String appname, String username, String password, String appkey) {
 
         //得到key
         SecretKey key = InfoStorage.readKey(InfoStorage.getPath(appkey));
@@ -76,9 +77,9 @@ public class InfoStorage {
         byte[] usernameByte = encrypt3DES(username, key);
         byte[] passwordByte = encrypt3DES(password, key);
         username = Base64.encodeToString(usernameByte, Base64.DEFAULT);
-        password = Base64.encodeToString(passwordByte,Base64.DEFAULT);
-        System.out.println("文件为"+appname);
-        SharedPreferences sharedPreferences = context. getSharedPreferences(appname, Context.MODE_PRIVATE);
+        password = Base64.encodeToString(passwordByte, Base64.DEFAULT);
+        System.out.println("文件为" + appname);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(appname, Context.MODE_PRIVATE);
         //SharedPreferences preferences = context.getSharedPreferences("share",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         // SharedPreferences.Editor editor2 = preferences.edit();
@@ -89,7 +90,7 @@ public class InfoStorage {
         //editor2.putString(p,appname);
         editor.putString("username", username);
         editor.putString("password", password);
-        editor.putString("appkey",appkey);
+        editor.putString("appkey", appkey);
         editor.apply();
         editor.commit();
         // editor2.apply();
@@ -97,22 +98,20 @@ public class InfoStorage {
     }
 
 
-
     //读取账号密码
-    public static String[] readInfo(Context context,String appname,String appkey) {
+    public static String[] readInfo(Context context, String appname, String appkey) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(appname, Context.MODE_PRIVATE);
         String str[] = new String[]{sharedPreferences.getString("username", ""), sharedPreferences.getString("password", "")};
-        str[0] = decode(str[0],appkey);
-        str[1] = decode(str[1],appkey);
+        str[0] = decode(str[0], appkey);
+        str[1] = decode(str[1], appkey);
         return str;
     }
 
-    private static String decode(String str,String appkey) {
+    private static String decode(String str, String appkey) {
         if (!TextUtils.isEmpty(str)) {
             //对数据进行解密
             SecretKey key = readKey(InfoStorage.getPath(appkey));
-            if (key != null)
-            {
+            if (key != null) {
                 str = decoder3DES(Base64.decode(str.getBytes(), Base64.DEFAULT), key);
             }
         }

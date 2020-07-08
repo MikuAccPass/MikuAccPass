@@ -12,6 +12,7 @@ import java.util.List;
 
 public class AcountAdapter extends ArrayAdapter<Acount> {
     private int resourceId;
+
     //重写构造函数，把id和数据传进来
     public AcountAdapter(Context context, int textViewResourceId, List<Acount> objects) {
         super(context, textViewResourceId, objects);
@@ -30,7 +31,7 @@ public class AcountAdapter extends ArrayAdapter<Acount> {
         View view;
         if (convertView == null) {
             view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);//false参数表示只让我们在父布局中声明的layout属性生效
-        }else {
+        } else {
             view = convertView;
         }
         ImageView fruitImage = view.findViewById(R.id.Acount_image);
@@ -38,8 +39,8 @@ public class AcountAdapter extends ArrayAdapter<Acount> {
         TextView fruitName = view.findViewById(R.id.Acount_name);
 
         fruitImage.setImageResource(fruit.getImageId());
-        fruitStation.setText("平台名："+fruit.getStation());
-        fruitName.setText("用户名："+fruit.getName());
+        fruitStation.setText("平台名：" + fruit.getStation());
+        fruitName.setText("用户名：" + fruit.getName());
         return view;
 
     }

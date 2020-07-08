@@ -1,9 +1,6 @@
 package com.example.mikuaccpass;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListPopupWindow;
 import android.widget.Toast;
-import android.view.View.OnTouchListener;
 
 import java.util.Random;
 
@@ -37,7 +33,7 @@ public class RecordActivity extends BaseActivity {
         et_username = (EditText) findViewById(R.id.et_username);
         et_password = (EditText) findViewById(R.id.et_password);
         global = (GlobalApplication) getApplication();
-        et_appname.setOnTouchListener(new View.OnTouchListener(){
+        et_appname.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View view, MotionEvent event) {
@@ -54,11 +50,12 @@ public class RecordActivity extends BaseActivity {
 
         });
     }
+
     private void showListPopulWindow() {
         final String[] list = global.getString();//要填充的数据
         final ListPopupWindow listPopupWindow;
         listPopupWindow = new ListPopupWindow(RecordActivity.this);
-        listPopupWindow.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, list));//用android内置布局，或设计自己的样式
+        listPopupWindow.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list));//用android内置布局，或设计自己的样式
         listPopupWindow.setAnchorView(et_appname);//以哪个控件为基准，在该处以logId为基准
         listPopupWindow.setModal(true);
 
@@ -73,21 +70,20 @@ public class RecordActivity extends BaseActivity {
     }
 
     @SuppressLint("WrongConstant")
-    public void click(View v)
-    {
+    public void click(View v) {
         String appname = et_appname.getText().toString().trim();
-        String origin_appname=appname;
+        String origin_appname = appname;
         String username = et_username.getText().toString().trim();
         String password = et_password.getText().toString().trim();
-        SharedPreferences pref = getSharedPreferences(appname,MODE_PRIVATE);
-        int counter=2;
-        while(pref.getString("username","")!=""){
-            appname =origin_appname+counter;
+        SharedPreferences pref = getSharedPreferences(appname, MODE_PRIVATE);
+        int counter = 2;
+        while (pref.getString("username", "") != "") {
+            appname = origin_appname + counter;
             counter++;
-            pref=getSharedPreferences(appname,MODE_PRIVATE);
+            pref = getSharedPreferences(appname, MODE_PRIVATE);
         }
         //构造存储appkey的名字
-        String appkey="key";
+        String appkey = "key";
         StringBuilder appkey1 = new StringBuilder(appkey);//构造一个StringBuilder对象
         appkey1.insert(0, appname);//在指定的位置1，插入指定的字符串
         appkey = appkey1.toString();
@@ -95,13 +91,13 @@ public class RecordActivity extends BaseActivity {
 
 
         //System.out.println(password +"---"+password_confirm);
-        if (TextUtils.isEmpty(appname) ||TextUtils.isEmpty(password) || TextUtils.isEmpty(username)) {
+        if (TextUtils.isEmpty(appname) || TextUtils.isEmpty(password) || TextUtils.isEmpty(username)) {
             Toast.makeText(this, "密码不能为空！", 0).show();
             return;
-        }else {
+        } else {
             Toast.makeText(this, "保存成功！", 0).show();
             InfoStorage infostorage = null;
-            infostorage.saveInfo(this,appname,username,password,appkey,origin_appname);
+            infostorage.saveInfo(this, appname, username, password, appkey, origin_appname);
            /*/ System.out.println("content为"+content[0]);
             System.out.println("content为"+content[1]);*/
 //            SharedPreferences.Editor editor = sp.edit();
@@ -115,11 +111,12 @@ public class RecordActivity extends BaseActivity {
     }
 
     //随机密码填充
-    public void RandomNum(View v){
-        String password=genRandomNum();
+    public void RandomNum(View v) {
+        String password = genRandomNum();
         et_password.setText(password);
 
     }
+
     //获取随机密码
     public String genRandomNum() {
         int maxNum = 36;

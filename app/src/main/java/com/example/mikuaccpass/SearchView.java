@@ -13,12 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.TextPaint;
-import android.util.AttributeSet;
-import android.view.View;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +21,7 @@ import java.util.List;
  * Created by Administrator on 2016/8/31.
  * 搜索框
  */
-public class SearchView extends LinearLayout implements TextWatcher{
+public class SearchView extends LinearLayout implements TextWatcher {
 
     private EditText et_search;     //输入框
     private ImageView iv_clear;     //删除图标
@@ -63,12 +58,12 @@ public class SearchView extends LinearLayout implements TextWatcher{
         et_search.setTextSize(textSize);
         //搜索框文字
         s = typed.getString(R.styleable.SearchView_sv_text);
-        if (s != null){
+        if (s != null) {
             et_search.setText(s);
         }
         //提示文字
         s = typed.getString(R.styleable.SearchView_sv_hint);
-        if (s != null){
+        if (s != null) {
             et_search.setHint(s);
         }
         //是否隐藏搜索图标
@@ -83,11 +78,11 @@ public class SearchView extends LinearLayout implements TextWatcher{
         et_search.addTextChangedListener(this);
 
         //异步处理
-        mHandler = new Handler(){
+        mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 //更新回调接口
-                if (0 == msg.what){
+                if (0 == msg.what) {
                     waitThread = null;
                     //匹配结果回调
                     List searchList = new ArrayList();
@@ -112,14 +107,14 @@ public class SearchView extends LinearLayout implements TextWatcher{
     /**
      * 设置匹配数据的方法
      */
-    public void setSearchWay(SearchWay search){
+    public void setSearchWay(SearchWay search) {
         mSearch = search;
     }
 
     /**
      * 获取搜索框的文字
      */
-    public String getText(){
+    public String getText() {
         return et_search.getText().toString();
     }
 
@@ -140,9 +135,9 @@ public class SearchView extends LinearLayout implements TextWatcher{
     @Override
     public void afterTextChanged(Editable s) {
         //删除图标
-        if (s.toString().isEmpty()){
+        if (s.toString().isEmpty()) {
             iv_clear.setVisibility(GONE);
-        }else {
+        } else {
             iv_clear.setVisibility(VISIBLE);
         }
 
@@ -163,23 +158,24 @@ public class SearchView extends LinearLayout implements TextWatcher{
 
     /**
      * 设置搜索延时时间
+     *
      * @param waitTime 毫秒，精度为100ms
      */
-    public void setWaitTime(int waitTime){
+    public void setWaitTime(int waitTime) {
         this.waitTime = waitTime;
     }
 
     /**
      * 延时搜索的线程
      */
-    private class WaitThread extends Thread{
+    private class WaitThread extends Thread {
         @Override
         public void run() {
             //等待延时
-            for (curTime = 0; curTime < waitTime; curTime += 100){
+            for (curTime = 0; curTime < waitTime; curTime += 100) {
                 try {
                     Thread.sleep(100);
-                }catch (InterruptedException e){
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -191,7 +187,7 @@ public class SearchView extends LinearLayout implements TextWatcher{
     /**
      * 用于匹配项
      */
-    public static abstract class SearchWay<T>{
+    public static abstract class SearchWay<T> {
         /**
          * @return 数据源
          */
@@ -204,6 +200,7 @@ public class SearchView extends LinearLayout implements TextWatcher{
 
         /**
          * 更新列表
+         *
          * @param resultList 匹配的数据，重新加载到列表
          */
         public abstract void update(List<T> resultList);
