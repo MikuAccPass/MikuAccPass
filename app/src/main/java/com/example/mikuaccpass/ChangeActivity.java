@@ -68,7 +68,8 @@ public class ChangeActivity extends BaseActivity {
 //            editor.commit();
 //            Toast.makeText(this, "密码保存成功！", 0).show();
         }
-        startActivity(new Intent(ChangeActivity.this, HomepageActivity.class));
+        startActivity(new Intent(ChangeActivity.this, MainActivity.class));
+        finish();
 
 
     }
