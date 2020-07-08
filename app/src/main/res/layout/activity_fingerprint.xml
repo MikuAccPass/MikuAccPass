@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textSize="32dp"
         android:gravity="center"
-        android:textColor="#B186A3"
+        android:textColor="@color/xui_config_color_white"
         android:text="请验证指纹"
         android:textStyle="bold"
         android:layout_above="@+id/fpp"

@@ -31,7 +31,7 @@
         android:layout_centerVertical="true"
         android:inputType="numberPassword"
         android:hint="请输入Pin"
-        android:textColorHint="#D5C0CF"
+        android:textColorHint="@color/xui_config_color_white"
         android:textColor="#FFC0CB"/>
 
     <com.xuexiang.xui.widget.button.shadowbutton.ShadowButton
