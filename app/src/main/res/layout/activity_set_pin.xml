@@ -19,7 +19,7 @@
         android:textStyle="bold"
         android:layout_above="@+id/pin_et"
         android:layout_marginBottom="100dp"
-        android:textColor="#B186A3" />
+        android:textColor="#F5F5F5" />
 
     <EditText
         android:id="@+id/pin_et"
@@ -32,29 +32,19 @@
         android:inputType="numberPassword"
         android:hint="请输入Pin"
         android:textColorHint="@color/xui_config_color_white"
-        android:textColor="#FFC0CB"/>
+        android:textColor="#FFFFFF"/>
 
-    <com.xuexiang.xui.widget.button.shadowbutton.ShadowButton
+    <Button
         android:id="@+id/apply_btn"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        app:sb_shape_type="round"
-        app:sb_color_unpressed="#B186A3"
-        app:sb_color_pressed="#594675"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/star_button_select"
         android:layout_below="@+id/pin_et"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
+        android:layout_marginTop="60dp"
         android:text="Apply"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:textColor="#E7DDB8"
-        android:layout_below="@+id/pin_et"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="66dp"/>
+        android:textColor="#FFFFFF"/>
+
+
 
 </RelativeLayout>
