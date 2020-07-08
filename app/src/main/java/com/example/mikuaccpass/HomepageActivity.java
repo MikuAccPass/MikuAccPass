@@ -139,13 +139,16 @@ public class HomepageActivity extends Fragment {
             SharedPreferences pref=this.getActivity().getSharedPreferences(appname, MODE_PRIVATE);
             String appkey = pref.getString("appkey","");
             String origin_appname=pref.getString("origin_appname","");
-            int imageid=getResource(origin_appname);
-            if(imageid==0)
-                imageid=getResource("ic_launcher_background");
-            InfoStorage infostorage = null;
-            String[] content=infostorage.readInfo(getActivity(),appname,appkey);
-            Acount x = new Acount(appname,content[0],content[1], imageid);
-            acountList.add(x);
+            if(!origin_appname.equals(""))
+            {
+                int imageid=getResource(origin_appname);
+                if(imageid==0)
+                    imageid=getResource("ic_launcher_background");
+                InfoStorage infostorage = null;
+                String[] content=infostorage.readInfo(getActivity(),appname,appkey);
+                Acount x = new Acount(appname,content[0],content[1], imageid);
+                acountList.add(x);
+            }
         }
         editor.apply();
         setListViewData(acountList);

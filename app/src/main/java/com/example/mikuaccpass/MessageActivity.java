@@ -1,16 +1,21 @@
 package com.example.mikuaccpass;
 
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+
 public class MessageActivity extends BaseActivity {
 
-    private Button btnChange;
+    private Button btnChange,btnDelete;
     private TextView tvstation, tvname, tvpw;
 
     @Override
@@ -27,6 +32,7 @@ public class MessageActivity extends BaseActivity {
     }
 
     private void initView() {
+        btnDelete=findViewById(R.id.btn_delete);
         btnChange = findViewById(R.id.btn_change);
         tvstation = findViewById(R.id.tv_station);
         tvname = findViewById(R.id.tv_name);
@@ -55,8 +61,43 @@ public class MessageActivity extends BaseActivity {
                     startActivity(intent2);
                 }
             });
+
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String xmlpath="/data/data/com.example.mikuaccpass/shared_prefs/"+station+".xml";
+                    String keypath="/data/data/com.example.mikuaccpass/shared_prefs/appkeys/"+station+"key";
+                    deleteSingleFile(xmlpath);
+                    deleteSingleFile(keypath);
+                    delInfo(station);
+                    Intent intent = new Intent();
+                    intent.setAction("action.refreshList");
+                    sendBroadcast(intent);
+                    startActivity(new Intent(MessageActivity.this,MainActivity.class));
+                }
+            });
         }
 
+    }
+
+    public  void delInfo(String appname) {
+
+
+        SharedPreferences preferences =MessageActivity.this.getSharedPreferences("share", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor2 = preferences.edit();
+        int n = preferences.getInt("number",0);//n记载了数据数目的多少
+        // n=n+1;
+        for(int i=1;i<=n;i++)
+        {
+            String x=i+"";
+            String t;
+            t=preferences.getString(x,"");
+            if(t.equals(appname))
+                editor2.putString(x,"");
+
+        }
+        editor2.apply();
+        editor2.commit();
     }
 
     public void copyname(View v) {
@@ -71,5 +112,26 @@ public class MessageActivity extends BaseActivity {
         cmb.setText(tvpw.getText().toString().trim());
         Toast.makeText(this, "密码已经复制", Toast.LENGTH_SHORT).show();
 
+    }
+
+    /** 删除单个文件
+     * @param filePath$Name 要删除的文件的文件名
+     * @return 单个文件删除成功返回true，否则返回false
+     */
+    private boolean deleteSingleFile(String filePath$Name) {
+        File file = new File(filePath$Name);
+        // 如果文件路径所对应的文件存在，并且是一个文件，则直接删除
+        if (file.exists() && file.isFile()) {
+            if (file.delete()) {
+                Log.e("--Method--", "Copy_Delete.deleteSingleFile: 删除单个文件" + filePath$Name + "成功！");
+                return true;
+            } else {
+                Toast.makeText(getApplicationContext(), "删除单个文件" + filePath$Name + "失败！", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "删除单个文件失败：" + filePath$Name + "不存在！", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 }

@@ -87,5 +87,11 @@
         style="/Button"
         android:layout_gravity="center_horizontal"
         android:text="是否重新存储" />
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="删除" />
+
 
 </LinearLayout>
