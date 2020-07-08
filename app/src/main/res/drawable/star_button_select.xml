@@ -15,8 +15,8 @@
 <item android:state_pressed="true">  <!-- 按钮选中状态-->
                <shape >
               <stroke android:width="0.8dp"
-        android:color="#483D8B" /><!-- 边框颜色，边框大小-->
-              <solid android:color="#483D8B" /> <!-- 颜色 -->
+        android:color="#AFB1B3" /><!-- 边框颜色，边框大小-->
+              <solid android:color="#AFB1B3" /> <!-- 颜色 -->
               <corners android:radius="15dip" /><!-- 弧形的半径 -->
               <padding android:bottom="10dp"
                        android:left="10dp"

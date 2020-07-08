@@ -28,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="TextView"
+                android:textColor="@color/xui_config_color_white"
                 android:textSize="17dp" />
 
             <TextView
@@ -35,6 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="TextView"
+                android:textColor="@color/xui_config_color_white"
                 android:textSize="17dp" />
         </LinearLayout>
 
