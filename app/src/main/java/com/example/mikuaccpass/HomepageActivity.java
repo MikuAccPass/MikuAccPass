@@ -64,7 +64,14 @@ public class HomepageActivity extends Fragment {
         btnplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), RecordActivity.class));
+                String[] passwordarray=initFruits1();
+//                for(int i=1;i<=3;i++){
+//                    System.out.println("跳转前密码组为:"+passwordarray[i]);
+//                }
+
+                Intent intent=new Intent(getActivity(), RecordActivity.class);
+                intent.putExtra("passwordarray",passwordarray);
+                startActivity(intent);
             }
         });
         //注册监听器
@@ -152,6 +159,36 @@ public class HomepageActivity extends Fragment {
         }
         editor.apply();
         setListViewData(acountList);
+    }
+
+    private String[] initFruits1()
+    {
+        global = (GlobalApplication) getActivity().getApplication();
+        SharedPreferences.Editor editor = preferences.edit();
+        int n=preferences.getInt("number",0);
+        editor.putInt("number",n);
+        String [ ] passwordarray=new String[n+1];
+        for (int i=1;i<=n;i++)
+
+        {
+
+            String appname=i+"";
+            appname = preferences.getString(appname,"");//获取appname为命名的相关sharepreference文件夹名字
+            SharedPreferences pref=this.getActivity().getSharedPreferences(appname, MODE_PRIVATE);
+            String appkey = pref.getString("appkey","");
+            String origin_appname=pref.getString("origin_appname","");
+            if(!origin_appname.equals(""))
+            {
+                int imageid=getResource(origin_appname);
+                if(imageid==0)
+                    imageid=getResource("ic_launcher_background");
+                InfoStorage infostorage = null;
+                String[] content=infostorage.readInfo(getActivity(),appname,appkey);
+                Acount x = new Acount(appname,content[0],content[1], imageid);
+                passwordarray[i]=x.getPassword();
+            }
+        }
+        return passwordarray;
     }
     private void setListViewData(List<Acount> list){
         //设置ListView的适配器
