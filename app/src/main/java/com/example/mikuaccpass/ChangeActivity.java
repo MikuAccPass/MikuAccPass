@@ -45,6 +45,7 @@ public class ChangeActivity extends BaseActivity {
             pref=getSharedPreferences(appname,MODE_PRIVATE);
         }*/
         //构造存储appkey的名字
+
         String appkey = "key";
         StringBuilder appkey1 = new StringBuilder(appkey);//构造一个StringBuilder对象
         appkey1.insert(0, appname);//在指定的位置1，插入指定的字符串
@@ -68,7 +69,8 @@ public class ChangeActivity extends BaseActivity {
 //            editor.commit();
 //            Toast.makeText(this, "密码保存成功！", 0).show();
         }
-        startActivity(new Intent(ChangeActivity.this, HomepageActivity.class));
+        startActivity(new Intent(ChangeActivity.this, MainActivity.class));
+        finish();
 
 
     }

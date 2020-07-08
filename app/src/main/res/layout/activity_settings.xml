@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context=".SettingsActivity">
+    android:background="#2d1c4d"
+    tools:context=".SettingsActivity"
+    tools:ignore="ExtraText">
 
     <TextView
         android:id="@+id/shot"
@@ -25,14 +27,16 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/fill"
-        android:layout_marginTop="60dp"
-        app:sDividerLineType="both"
-        app:sLeftTextString="设置pin"
+        android:layout_marginTop="32dp"
+        app:sUseShape="true"
+        app:sShapeSelectorNormalColor="#2d1c4d"
+        app:sShapeSelectorPressedColor="#594675"
         app:sLeftTextColor="#00738C"
-        app:sLeftTextSize="25dp"
         app:sLeftTextIsBold="true"
+        app:sLeftTextSize="25dp"
+        app:sLeftTextString="设置pin"
         app:sRightIconRes="@drawable/icon_arrow_right_red"
-        app:sUseRipple="true"/>
+        app:sUseRipple="true" />
 
     <com.xuexiang.xui.widget.button.switchbutton.SwitchButton
         android:id="@+id/shot_switch"
@@ -57,12 +61,12 @@
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/shot"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:padding="15dp"
         android:text="允许指纹验证"
+        android:textColor="#81B0B2"
         android:textSize="25dp"
-        android:textStyle="bold"
-        android:textColor="#81B0B2" />
+        android:textStyle="bold" />
 
     <com.xuexiang.xui.widget.button.switchbutton.SwitchButton
         android:id="@+id/fingerprint_switch"
@@ -85,12 +89,12 @@
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fingerprint"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:padding="15dp"
         android:text="允许自动填充"
+        android:textColor="#81B0B2"
         android:textSize="25dp"
-        android:textStyle="bold"
-        android:textColor="#81B0B2" />
+        android:textStyle="bold" />
 
     <com.xuexiang.xui.widget.button.switchbutton.SwitchButton
         android:id="@+id/fill_switch"

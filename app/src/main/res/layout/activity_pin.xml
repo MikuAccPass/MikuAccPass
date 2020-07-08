@@ -1,69 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#2D1C4D"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="91dp"
-        tools:layout_editor_absoluteY="366dp">
+        android:padding="10dp"
+        android:layout_above="@+id/Password"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:inputType="textPersonName"
+        android:text="进入Miku"
+        android:textSize="30dp"
+        android:textColor="#B186A3"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="156dp"
-                android:inputType="textPersonName"
-                android:text="密码:"
-                android:textSize="26dp" />
-
-            <EditText
-                android:id="@+id/Password"
-                android:layout_width="297dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="156dp"
-                android:layout_marginEnd="96dp"
-                android:ems="18"
-                android:hint="请输入密码"
-                android:inputType="numberPassword" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/btn_main"
-            android:layout_width="157dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_marginBottom="156dp"
-            android:text="进入主页"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    </LinearLayout>
+    <EditText
+        android:id="@+id/Password"
+        android:layout_width="297dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="96dp"
+        android:ems="18"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:textColorHint="#D5C0CF"
+        android:hint="请输入密码"
+        android:inputType="numberPassword"
+        android:textColor="#E7DDB8"/>
 
 
-</LinearLayout>
+
+
+    <com.xuexiang.xui.widget.button.shadowbutton.ShadowButton
+        android:id="@+id/btn_main"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:sb_shape_type="round"
+        android:layout_below="@+id/Password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        app:sb_color_unpressed="#B186A3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="进入主页"
+        android:textColor="#E7DDB8"
+        android:textSize="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/Password"
+        android:layout_marginTop="67dp"/>
+
+
+
+</RelativeLayout>

@@ -18,7 +18,7 @@ public class GlobalApplication extends Application {
     private boolean screenshotPermit;
     private int pin;
     private boolean fingerprint_enable;
-    final String[] list_elements = {"alipay", "bilibili", "dian_ping", "du", "hupu", "instagram", "jd", "keep", "meituan", "nice", "qq", "steam", "taobao", "tieba", "tiktok", "wechat", "weibo", "zhihu"};
+    final String[] list_elements = {"支付宝", "bilibili", "大众点评", "毒", "虎扑", "instagram", "京东", "keep", "美团", "nice", "qq", "steam", "淘宝", "百度贴吧", "抖音", "微信", "微博", "知乎"};
     List<String> list = Arrays.asList(list_elements);
 
     private SharedPreferences preferences;
@@ -60,8 +60,44 @@ public class GlobalApplication extends Application {
 
     public String getElement(String appname) {
 
-        appname.toLowerCase();
-        if (list.contains(appname))
+        //appname.toLowerCase();
+        if(appname.equals("支付宝"))
+            return "alipay";
+        else if(appname.equals("bilibili"))
+            return "bilibili";
+        else if(appname.equals("大众点评"))
+            return "dian_ping";
+        else if(appname.equals("毒"))
+            return "dewu";
+        else if(appname.equals("虎扑"))
+            return "hupu";
+        else if(appname.equals("instagram"))
+            return "instagrm";
+        else if(appname.equals("京东"))
+            return "jd";
+        else if(appname.equals("keep"))
+            return "keep";
+        else if(appname.equals("美团"))
+            return "meituan";
+        else if(appname.equals("nice"))
+            return "nice";
+        else if(appname.equals("qq"))
+            return "qq";
+        else if(appname.equals("steam"))
+            return "steam";
+        else if(appname.equals("淘宝"))
+            return "taobao";
+        else if(appname.equals("百度贴吧"))
+            return "tieba";
+        else if(appname.equals("抖音"))
+            return "douyin";
+        else if(appname.equals("微信"))
+            return"wechat";
+        else if(appname.equals("微博"))
+            return "weibo";
+        else if(appname.equals("知乎"))
+            return "zhihu";
+        else if(list.contains(appname))
             return appname;
         else return "ic_launcher_background";
     }

@@ -59,6 +59,7 @@ public class MessageActivity extends BaseActivity {
                     intent2.putExtra("data3", password);
                     // intent2.putExtra("data2",nameid);
                     startActivity(intent2);
+                    finish();
                 }
             });
 
@@ -74,6 +75,7 @@ public class MessageActivity extends BaseActivity {
                     intent.setAction("action.refreshList");
                     sendBroadcast(intent);
                     startActivity(new Intent(MessageActivity.this,MainActivity.class));
+                    finish();
                 }
             });
         }

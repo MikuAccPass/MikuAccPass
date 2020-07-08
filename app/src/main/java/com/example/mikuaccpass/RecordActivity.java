@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,12 +23,16 @@ public class RecordActivity extends BaseActivity {
     private EditText et_password;
     private EditText et_appname;
     private GlobalApplication global;
+    private String[] passwordarray;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
+
+        Intent intent = this.getIntent();
+        passwordarray = intent.getStringArrayExtra("passwordarray");
 
         et_appname = (EditText) findViewById(R.id.et_appname);
         et_username = (EditText) findViewById(R.id.et_username);
@@ -55,6 +60,8 @@ public class RecordActivity extends BaseActivity {
         final String[] list = global.getString();//要填充的数据
         final ListPopupWindow listPopupWindow;
         listPopupWindow = new ListPopupWindow(RecordActivity.this);
+        int height = getWindowManager().getDefaultDisplay().getHeight();
+        listPopupWindow.setHeight(height * 1 / 2);
         listPopupWindow.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list));//用android内置布局，或设计自己的样式
         listPopupWindow.setAnchorView(et_appname);//以哪个控件为基准，在该处以logId为基准
         listPopupWindow.setModal(true);
@@ -89,12 +96,25 @@ public class RecordActivity extends BaseActivity {
         appkey = appkey1.toString();
         System.out.println(appkey);
 
+        boolean sign=false;
+        int arrarylength=passwordarray.length;
+        for(int i=1;i<=arrarylength-1;i++){
+            if(password.equals(passwordarray[i])){sign=true;break;}
+        }
 
         //System.out.println(password +"---"+password_confirm);
         if (TextUtils.isEmpty(appname) || TextUtils.isEmpty(password) || TextUtils.isEmpty(username)) {
             Toast.makeText(this, "密码不能为空！", 0).show();
             return;
-        } else {
+        }
+        else if (sign) {
+            Toast.makeText(this, "该密码已经存在，请修改密码！", 0).show();
+            et_password.setTextColor(0xffff0000);
+            et_password.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
+//            System.out.println("该密码已经存在，请修改密码");
+            return;
+        }
+        else {
             Toast.makeText(this, "保存成功！", 0).show();
             InfoStorage infostorage = null;
             infostorage.saveInfo(this, appname, username, password, appkey, origin_appname);
