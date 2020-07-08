@@ -25,6 +25,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.xuexiang.xui.widget.button.switchbutton.SwitchButton;
+import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
+
 import static android.app.Activity.RESULT_OK;
 
 public class SettingsActivity extends Fragment {
@@ -37,7 +40,7 @@ public class SettingsActivity extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
-            Switch fill_switch = root.findViewById(R.id.fill_switch);
+            SwitchButton fill_switch = root.findViewById(R.id.fill_switch);
             if (resultCode == RESULT_OK) {
                 preferences = getActivity().getSharedPreferences("setting", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
@@ -64,16 +67,16 @@ public class SettingsActivity extends Fragment {
         global = (GlobalApplication) getActivity().getApplication();
         preferences = getActivity().getSharedPreferences("setting", Context.MODE_PRIVATE);
 
-        Button pin_btn = root.findViewById(R.id.pin_btn);
-        pin_btn.setOnClickListener(new View.OnClickListener() {
+        SuperTextView pin_btn = root.findViewById(R.id.pin_btn);
+        pin_btn.setOnSuperTextViewClickListener(new SuperTextView.OnSuperTextViewClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(SuperTextView superTextView) {
                 Intent pin_set = new Intent(getActivity(), SetPinActivity.class);
                 startActivity(pin_set);
             }
         });
 
-        Switch shot_switch = root.findViewById(R.id.shot_switch);
+        SwitchButton shot_switch = root.findViewById(R.id.shot_switch);
         shot_switch.setChecked(global.ScreenshotPermit());
 
         shot_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -88,7 +91,7 @@ public class SettingsActivity extends Fragment {
             }
         });
 
-        final Switch fill_switch = root.findViewById(R.id.fill_switch);
+        final SwitchButton fill_switch = root.findViewById(R.id.fill_switch);
         fill_switch.setChecked(preferences.getBoolean("autofill_enable", false));
         fill_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -135,7 +138,7 @@ public class SettingsActivity extends Fragment {
             }
         });
 
-        final Switch fingerprint_switch = root.findViewById(R.id.fingerprint_switch);
+        final SwitchButton fingerprint_switch = root.findViewById(R.id.fingerprint_switch);
         fingerprint_switch.setChecked(global.isFingerprint_enable());
         fingerprint_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

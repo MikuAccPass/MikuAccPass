@@ -19,9 +19,7 @@
         <activity android:name=".ChangeActivity"></activity>
         <activity android:name=".MessageActivity"></activity>
         <activity android:name=".RecordActivity" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".FingerprintActivity" />
         <activity android:name=".SetPinActivity" />
         <activity android:name=".SplashActivity">
@@ -43,5 +41,6 @@
             </intent-filter>
         </service>
     </application>
+
 
 </manifest>

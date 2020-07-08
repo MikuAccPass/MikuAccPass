@@ -38,6 +38,7 @@ public class HomepageActivity extends Fragment {
     private String saveValue;
     private String saveStation;
     private FloatingActionButton btnplus,btnSetting;
+    private GlobalApplication global;
 
     private SearchView searchView;  //搜索框
     private ListView listView ;
@@ -131,18 +132,25 @@ public class HomepageActivity extends Fragment {
     }
     private void initFruits()
     {
+        global = (GlobalApplication) getActivity().getApplication();
         SharedPreferences.Editor editor = preferences.edit();
         int n=preferences.getInt("number",0);
         editor.putInt("number",n);
         for (int i=1;i<=n;i++)
+
         {
+
             String appname=i+"";
             appname = preferences.getString(appname,"");//获取appname为命名的相关sharepreference文件夹名字
             SharedPreferences pref=this.getActivity().getSharedPreferences(appname, MODE_PRIVATE);
             String appkey = pref.getString("appkey","");
+            String origin_appname=pref.getString("origin_appname","");
+            int imageid=getResource(origin_appname);
+            if(imageid==0)
+                imageid=getResource("ic_launcher_background");
             InfoStorage infostorage = null;
             String[] content=infostorage.readInfo(getActivity(),appname,appkey);
-            Acount x = new Acount(appname,content[0],content[1], R.drawable.ic_launcher_background);
+            Acount x = new Acount(appname,content[0],content[1], imageid);
             acountList.add(x);
         }
         editor.apply();
@@ -154,4 +162,11 @@ public class HomepageActivity extends Fragment {
                 R.layout.listview, list);
         listView.setAdapter(adapter);
     }
+    public int  getResource(String imageName){
+        Context ctx=getActivity().getBaseContext();
+                             int resId = getResources().getIdentifier(imageName, "drawable", ctx.getPackageName());
+        //如果没有在"mipmap"下找到imageName,将会返回0
+        return resId;
+    }
+
 }

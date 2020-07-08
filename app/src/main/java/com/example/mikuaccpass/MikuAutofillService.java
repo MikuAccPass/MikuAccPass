@@ -29,7 +29,7 @@ public class MikuAutofillService extends AutofillService {
         preferences = getSharedPreferences("setting", MODE_PRIVATE);
         accountList.clear();
         fields.clear();
-        
+
         if(preferences.getBoolean("autofill_enable",false))
         {
             getAccounts();

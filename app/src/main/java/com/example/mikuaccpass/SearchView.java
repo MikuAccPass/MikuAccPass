@@ -13,7 +13,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.TextPaint;
+import android.util.AttributeSet;
+import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 

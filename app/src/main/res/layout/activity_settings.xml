@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,84 +8,105 @@
     android:orientation="vertical"
     tools:context=".SettingsActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/shot"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/shot"
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:padding="15dp"
-            android:text="允许截图"
-            android:textColor="#BA55D3" />
-
-        <Switch
-            android:id="@+id/shot_switch"
-            android:layout_width="90dp"
-            android:layout_height="45dp"
-            android:layout_toRightOf="@+id/shot"
-            android:layout_alignBottom="@+id/shot"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:text="" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/fill"
-            android:layout_width="230dp"
-            android:layout_height="match_parent"
-            android:padding="15dp"
-            android:text="允许自动填充用户名和密码"
-            android:textColor="#BA55D3" />
-
-        <Switch
-            android:id="@+id/fill_switch"
-            android:layout_width="90dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:text="" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/fingerprint"
-            android:layout_width="230dp"
-            android:layout_height="match_parent"
-            android:padding="15dp"
-            android:text="允许指纹验证"
-            android:textColor="#BA55D3" />
-
-        <Switch
-            android:id="@+id/fingerprint_switch"
-            android:layout_width="90dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:text="" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/pin_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="50dp"
-        android:gravity="clip_horizontal|center|clip_vertical|center_horizontal|fill_horizontal"
-        android:text="设置Pin" />
+        android:padding="15dp"
+        android:text="允许截图"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="#81B0B2" />
 
 
-</LinearLayout>
+    <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+        android:id="@+id/pin_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/fill"
+        android:layout_marginTop="60dp"
+        app:sDividerLineType="both"
+        app:sLeftTextString="设置pin"
+        app:sLeftTextColor="#00738C"
+        app:sLeftTextSize="25dp"
+        app:sLeftTextIsBold="true"
+        app:sRightIconRes="@drawable/icon_arrow_right_red"
+        app:sUseRipple="true"/>
+
+    <com.xuexiang.xui.widget.button.switchbutton.SwitchButton
+        android:id="@+id/shot_switch"
+        style="@style/SwitchButtonStyle"
+        android:layout_width="82dp"
+        android:layout_height="63dp"
+        android:layout_alignBottom="@+id/shot"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/shot"
+        android:layout_marginLeft="80dp"
+        app:swb_animationDuration="300"
+        app:swb_backDrawable="@drawable/ios_back_drawable"
+        app:swb_thumbDrawable="@drawable/ios_thumb_selector"
+        app:swb_thumbMarginBottom="-8dp"
+        app:swb_thumbMarginLeft="-5dp"
+        app:swb_thumbMarginRight="-5dp"
+        app:swb_thumbMarginTop="-2.5dp"
+        app:swb_thumbRangeRatio="1.4" />
+
+    <TextView
+        android:id="@+id/fingerprint"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shot"
+        android:layout_marginTop="50dp"
+        android:padding="15dp"
+        android:text="允许指纹验证"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="#81B0B2" />
+
+    <com.xuexiang.xui.widget.button.switchbutton.SwitchButton
+        android:id="@+id/fingerprint_switch"
+        style="@style/SwitchButtonStyle"
+        android:layout_width="82dp"
+        android:layout_height="63dp"
+        android:layout_alignBottom="@+id/fingerprint"
+        android:layout_alignLeft="@+id/shot_switch"
+        app:swb_animationDuration="300"
+        app:swb_backDrawable="@drawable/ios_back_drawable"
+        app:swb_thumbDrawable="@drawable/ios_thumb_selector"
+        app:swb_thumbMarginBottom="-8dp"
+        app:swb_thumbMarginLeft="-5dp"
+        app:swb_thumbMarginRight="-5dp"
+        app:swb_thumbMarginTop="-2.5dp"
+        app:swb_thumbRangeRatio="1.4" />
+
+    <TextView
+        android:id="@+id/fill"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fingerprint"
+        android:layout_marginTop="50dp"
+        android:padding="15dp"
+        android:text="允许自动填充"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="#81B0B2" />
+
+    <com.xuexiang.xui.widget.button.switchbutton.SwitchButton
+        android:id="@+id/fill_switch"
+        style="@style/SwitchButtonStyle"
+        android:layout_width="82dp"
+        android:layout_height="63dp"
+        android:layout_alignBottom="@+id/fill"
+        android:layout_alignLeft="@+id/shot_switch"
+        app:swb_animationDuration="300"
+        app:swb_backDrawable="@drawable/ios_back_drawable"
+        app:swb_thumbDrawable="@drawable/ios_thumb_selector"
+        app:swb_thumbMarginBottom="-8dp"
+        app:swb_thumbMarginLeft="-5dp"
+        app:swb_thumbMarginRight="-5dp"
+        app:swb_thumbMarginTop="-2.5dp"
+        app:swb_thumbRangeRatio="1.4" />
+
+
+</RelativeLayout>
