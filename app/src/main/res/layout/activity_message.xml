@@ -106,7 +106,8 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/star_button_select"
         android:gravity="center"
-        android:text="是否重新存储" />
+        android:text="是否重新存储"
+        android:textColor="@color/xui_config_color_white"/>
 
     <Button
         android:id="@+id/btn_delete"
@@ -117,7 +118,8 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/star_button_select"
         android:gravity="center"
-        android:text="删除" />
+        android:text="删除"
+        android:textColor="@color/xui_config_color_white"/>
 
 
 </RelativeLayout>

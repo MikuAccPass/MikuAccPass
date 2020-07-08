@@ -50,7 +50,8 @@
         android:gravity="center"
         android:background="@drawable/star_button_select"
         android:onClick="click"
-        android:text="确定" />
+        android:text="确定"
+        android:textColor="@color/xui_config_color_white"/>
 
     <Button
         android:id="@+id/sss"
@@ -60,5 +61,6 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/star_button_select"
         android:onClick="RandomNum"
-        android:text="自动生成密码" />
+        android:text="自动生成密码"
+        android:textColor="@color/xui_config_color_white"/>
 </RelativeLayout>

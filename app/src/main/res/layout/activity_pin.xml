@@ -31,7 +31,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center"
-        android:textColorHint="@color/xui_config_color_white"
+        android:textColorHint="@color/wordcolor"
         android:hint="请输入密码"
         android:inputType="numberPassword"
         android:textColor="#FFFFFF"/>

@@ -7,5 +7,6 @@
     <color name="clr_pressed">#483D8B</color>
     <color name="bgcolor">#404040</color>
     <color name="selcetcolor">#AFB1B3</color>
+    <color name="wordcolor">#545454</color>
 
 </resources>
