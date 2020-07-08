@@ -25,19 +25,19 @@ public class FingerprintActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint);
 
-        global = (GlobalApplication)getApplication();
+        global = (GlobalApplication) getApplication();
         tv_finger = findViewById(R.id.tv_finger);
 
         identify = new FingerprintIdentify(getApplicationContext());
         identify.setExceptionListener(new BaseFingerprint.ExceptionListener() {
             @Override
             public void onCatchException(Throwable exception) {
-                System.out.println("错误"+exception.getLocalizedMessage());
+                System.out.println("错误" + exception.getLocalizedMessage());
             }
         });
         identify.init();
 
-        if(!identify.isFingerprintEnable()){
+        if (!identify.isFingerprintEnable()) {
             tv_finger.setText("无法进行指纹验证");
             Intent intent = new Intent(FingerprintActivity.this, PinActivity.class);
             FingerprintActivity.this.finish();
@@ -45,8 +45,8 @@ public class FingerprintActivity extends Activity {
         identify.startIdentify(MAX_AVAILABLE_TIMES, new BaseFingerprint.IdentifyListener() {
             @Override
             public void onSucceed() {
-                Toast succeed_toast = Toast.makeText(getApplicationContext(),"验证成功",Toast.LENGTH_LONG);
-                succeed_toast.setGravity(Gravity.CENTER,0,0);
+                Toast succeed_toast = Toast.makeText(getApplicationContext(), "验证成功", Toast.LENGTH_LONG);
+                succeed_toast.setGravity(Gravity.CENTER, 0, 0);
                 succeed_toast.show();
                 global.setLocked(false);
                 FingerprintActivity.this.finish();
@@ -54,8 +54,8 @@ public class FingerprintActivity extends Activity {
 
             @Override
             public void onNotMatch(int availableTimes) {
-                Toast succeed_toast = Toast.makeText(getApplicationContext(),"指纹不匹配",Toast.LENGTH_LONG);
-                succeed_toast.setGravity(Gravity.CENTER,0,0);
+                Toast succeed_toast = Toast.makeText(getApplicationContext(), "指纹不匹配", Toast.LENGTH_LONG);
+                succeed_toast.setGravity(Gravity.CENTER, 0, 0);
                 succeed_toast.show();
             }
 
@@ -65,12 +65,12 @@ public class FingerprintActivity extends Activity {
                 Intent pin = new Intent(FingerprintActivity.this, PinActivity.class);
                 startActivity(pin);
                 FingerprintActivity.this.finish();
-        }
+            }
 
             @Override
             public void onStartFailedByDeviceLocked() {
-                Toast succeed_toast = Toast.makeText(getApplicationContext(),"验证失败，设备可能已被暂时锁定",Toast.LENGTH_LONG);
-                succeed_toast.setGravity(Gravity.CENTER,0,0);
+                Toast succeed_toast = Toast.makeText(getApplicationContext(), "验证失败，设备可能已被暂时锁定", Toast.LENGTH_LONG);
+                succeed_toast.setGravity(Gravity.CENTER, 0, 0);
                 succeed_toast.show();
             }
         });
@@ -97,7 +97,7 @@ public class FingerprintActivity extends Activity {
         startActivity(home);
     }
 
-    public void usePin(View view){
+    public void usePin(View view) {
         Intent pin = new Intent(FingerprintActivity.this, PinActivity.class);
         startActivity(pin);
         FingerprintActivity.this.finish();

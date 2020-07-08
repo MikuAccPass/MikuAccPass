@@ -21,7 +21,7 @@ import java.util.List;
 
 public class MikuAutofillService extends AutofillService {
     private List<AssistStructure.ViewNode> fields = new ArrayList<>();
-    private  List<Acount> accountList = new ArrayList<>();
+    private List<Acount> accountList = new ArrayList<>();
     private SharedPreferences preferences;
 
     @Override
@@ -30,21 +30,20 @@ public class MikuAutofillService extends AutofillService {
         accountList.clear();
         fields.clear();
 
-        if(preferences.getBoolean("autofill_enable",false))
-        {
+        if (preferences.getBoolean("autofill_enable", false)) {
             getAccounts();
             List<FillContext> context = fillRequest.getFillContexts();
             AssistStructure structure = context.get(context.size() - 1).getStructure();
             traverseStructure(structure);
 
             FillResponse.Builder responseBuilder = new FillResponse.Builder();
-            for(int i=0;i<fields.size();i++){
-                for(int j =0;j<accountList.size();j++){
+            for (int i = 0; i < fields.size(); i++) {
+                for (int j = 0; j < accountList.size(); j++) {
                     RemoteViews usernamePresentation = new RemoteViews(getPackageName(), android.R.layout.simple_list_item_1);
                     usernamePresentation.setTextViewText(android.R.id.text1, accountList.get(j).getName());
 
                     Dataset loginDataSet = new Dataset.Builder()
-                            .setValue(fields.get(i).getAutofillId(), AutofillValue.forText(accountList.get(j).getPassword()),usernamePresentation)
+                            .setValue(fields.get(i).getAutofillId(), AutofillValue.forText(accountList.get(j).getPassword()), usernamePresentation)
                             .build();
 
                     responseBuilder.addDataset(loginDataSet);
@@ -77,28 +76,26 @@ public class MikuAutofillService extends AutofillService {
                 || viewNode.getInputType() == 0x00000012)
             fields.add(viewNode);
 
-        for(int i = 0; i < viewNode.getChildCount(); i++) {
+        for (int i = 0; i < viewNode.getChildCount(); i++) {
             AssistStructure.ViewNode childNode = viewNode.getChildAt(i);
             traverseNode(childNode);
         }
     }
 
-    private void getAccounts()
-    {
+    private void getAccounts() {
         accountList.clear();
-        preferences=getSharedPreferences("share",MODE_PRIVATE);
+        preferences = getSharedPreferences("share", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        int n=preferences.getInt("number",0);
-        editor.putInt("number",n);
-        for (int i=1;i<=n;i++)
-        {
-            String appname=i+"";
-            appname = preferences.getString(appname,"");//获取appname为命名的相关sharepreference文件夹名字
-            SharedPreferences pref=getSharedPreferences(appname,MODE_PRIVATE);
-            String appkey = pref.getString("appkey","");
+        int n = preferences.getInt("number", 0);
+        editor.putInt("number", n);
+        for (int i = 1; i <= n; i++) {
+            String appname = i + "";
+            appname = preferences.getString(appname, "");//获取appname为命名的相关sharepreference文件夹名字
+            SharedPreferences pref = getSharedPreferences(appname, MODE_PRIVATE);
+            String appkey = pref.getString("appkey", "");
             InfoStorage infostorage = null;
-            String[] content=infostorage.readInfo(this,appname,appkey);
-            Acount x = new Acount(appname,content[0],content[1], R.drawable.ic_launcher_background);
+            String[] content = infostorage.readInfo(this, appname, appkey);
+            Acount x = new Acount(appname, content[0], content[1], R.drawable.ic_launcher_background);
             accountList.add(x);
         }
         editor.apply();

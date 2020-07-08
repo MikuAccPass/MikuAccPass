@@ -1,29 +1,23 @@
 package com.example.mikuaccpass;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.mikuaccpass.Acount;
-import com.example.mikuaccpass.AcountAdapter;
-import com.example.mikuaccpass.InfoStorage;
-import com.example.mikuaccpass.MessageActivity;
-import com.example.mikuaccpass.R;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-
-import com.example.mikuaccpass.RecordActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
 

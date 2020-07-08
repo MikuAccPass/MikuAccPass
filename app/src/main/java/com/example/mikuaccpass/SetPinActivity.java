@@ -1,6 +1,5 @@
 package com.example.mikuaccpass;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +20,7 @@ public class SetPinActivity extends BaseActivity {
         setContentView(R.layout.activity_set_pin);
 
         preferences = getSharedPreferences("security", MODE_PRIVATE);
-        global = (GlobalApplication)getApplication();
+        global = (GlobalApplication) getApplication();
     }
 
     @Override
@@ -44,8 +43,7 @@ public class SetPinActivity extends BaseActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("Pin", pin);
                 editor.apply();
-                if (pin == (preferences.getInt("Pin", -1)))
-                {
+                if (pin == (preferences.getInt("Pin", -1))) {
                     global.setPin(pin);
                     Toast.makeText(SetPinActivity.this, "Pin设置成功", Toast.LENGTH_SHORT).show();
                     SetPinActivity.this.finish();
