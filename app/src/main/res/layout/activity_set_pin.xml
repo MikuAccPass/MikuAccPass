@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2D1C4D"
     tools:context=".SetPinActivity">
 
 
@@ -18,25 +19,41 @@
         android:textStyle="bold"
         android:layout_above="@+id/pin_et"
         android:layout_marginBottom="100dp"
-        android:textColor="#8B008B" />
+        android:textColor="#B186A3" />
 
     <EditText
         android:id="@+id/pin_et"
         android:layout_width="240dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center"
         android:padding="7dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:inputType="numberPassword"
-        android:hint="请输入Pin"/>
+        android:hint="请输入Pin"
+        android:textColorHint="#D5C0CF"/>
 
-    <Button
+    <com.xuexiang.xui.widget.button.shadowbutton.ShadowButton
         android:id="@+id/apply_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="应用"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:sb_shape_type="round"
+        app:sb_color_unpressed="#B186A3"
+        app:sb_color_pressed="#594675"
         android:layout_below="@+id/pin_et"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="60dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="Apply"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#E7DDB8"
+        android:layout_below="@+id/pin_et"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="66dp"/>
 
 </RelativeLayout>

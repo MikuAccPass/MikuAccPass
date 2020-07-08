@@ -1,11 +1,17 @@
 package com.example.mikuaccpass;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.xuexiang.xui.widget.textview.MarqueeTextView;
+import com.xuexiang.xui.widget.textview.marqueen.DisplayEntity;
+
+import java.util.List;
 
 public class SetPinActivity extends BaseActivity {
 
@@ -21,6 +27,7 @@ public class SetPinActivity extends BaseActivity {
 
         preferences = getSharedPreferences("security", MODE_PRIVATE);
         global = (GlobalApplication) getApplication();
+
     }
 
     @Override
@@ -43,7 +50,8 @@ public class SetPinActivity extends BaseActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("Pin", pin);
                 editor.apply();
-                if (pin == (preferences.getInt("Pin", -1))) {
+                if (pin == (preferences.getInt("Pin", -1)))
+                {
                     global.setPin(pin);
                     Toast.makeText(SetPinActivity.this, "Pin设置成功", Toast.LENGTH_SHORT).show();
                     SetPinActivity.this.finish();
