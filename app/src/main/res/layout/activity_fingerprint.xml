@@ -13,8 +13,8 @@
         android:textColor="@color/xui_config_color_white"
         android:text="请验证指纹"
         android:textStyle="bold"
-        android:layout_above="@+id/fpp"
-        android:layout_marginBottom="50dp"/>
+        android:layout_above="@+id/btn_pin"
+        android:layout_marginBottom="120dp"/>
 
     <ImageView
         android:id="@+id/fpp"
@@ -22,18 +22,24 @@
         android:layout_height="wrap_content"
         android:src="@drawable/fingerprint"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
+        android:layout_below="@+id/btn_pin"
+        android:layout_marginTop="150dp"/>
 
-    <com.xuexiang.xui.widget.button.roundbutton.RoundButton
+
+
+    <Button
         android:id="@+id/btn_pin"
         android:textSize="16dp"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="60dp"
-        android:text="使用Pin验证"
         android:layout_centerHorizontal="true"
         android:onClick="usePin"
-        android:layout_below="@id/fpp"
-        android:layout_marginTop="50dp" />
+        android:text="输入PIN验证"
+        android:textStyle="bold"
+        android:textColor="#F5F5F5"
+        android:layout_centerVertical="true"
+        android:background="@drawable/star_button_select"/>
+
+
 
 </RelativeLayout>
