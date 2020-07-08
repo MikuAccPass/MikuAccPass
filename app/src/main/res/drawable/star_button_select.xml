@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/clr_normal" android:state_pressed="false"/>
-    <item android:drawable="@color/clr_pressed" android:state_pressed="true"/>
+        <item android:state_pressed="false">   <!-- 按钮未点击-->
+            <shape >
+                  <stroke android:width="0.8dp"
+                          android:color="#434343" /><!-- 边框颜色大小-->
+                  <solid android:color="#434343" /> <!-- 颜色-->
+                  <corners android:radius="15dip" /><!--半径 -->
+                  <padding android:bottom="10dp"
+                           android:left="10dp"
+                           android:right="10dp"
+                           android:top="10dp"/>
+            </shape>
+</item>
+<item android:state_pressed="true">  <!-- 按钮选中状态-->
+               <shape >
+              <stroke android:width="0.8dp"
+        android:color="#483D8B" /><!-- 边框颜色，边框大小-->
+              <solid android:color="#483D8B" /> <!-- 颜色 -->
+              <corners android:radius="15dip" /><!-- 弧形的半径 -->
+              <padding android:bottom="10dp"
+                       android:left="10dp"
+                       android:right="10dp"
+                       android:top="10dp" />
+        </shape>
+        </item>
 </selector>
