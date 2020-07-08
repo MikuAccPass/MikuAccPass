@@ -5,17 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#2D1C4D"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="156dp"
+        android:padding="10dp"
+        android:layout_above="@+id/Password"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
         android:inputType="textPersonName"
-        android:text="密码:"
-        android:textSize="26dp" />
+        android:text="进入Miku"
+        android:textSize="30dp"
+        android:textColor="#B186A3"/>
 
     <EditText
         android:id="@+id/Password"
@@ -29,22 +34,32 @@
         android:gravity="center"
         android:textColorHint="#D5C0CF"
         android:hint="请输入密码"
-        android:inputType="numberPassword" />
+        android:inputType="numberPassword"
+        android:textColor="#E7DDB8"/>
 
 
 
 
-    <Button
+    <com.xuexiang.xui.widget.button.shadowbutton.ShadowButton
         android:id="@+id/btn_main"
-        android:layout_width="157dp"
-        android:layout_height="wrap_content"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:sb_shape_type="round"
         android:layout_below="@+id/Password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
+        app:sb_color_unpressed="#B186A3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
         android:text="进入主页"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="#E7DDB8"
+        android:textSize="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/Password"
+        android:layout_marginTop="67dp"/>
 
 
 
