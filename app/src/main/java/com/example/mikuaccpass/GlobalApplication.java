@@ -4,12 +4,18 @@ import android.app.Application;
 import android.content.SharedPreferences;
 
 
-import com.xuexiang.xui.XUI;
+
+
 
 import java.util.Arrays;
 import java.util.List;
 
 
+
+import java.util.Arrays;
+import java.util.List;
+
+import com.xuexiang.xui.XUI;
 public class GlobalApplication extends Application {
     private boolean isLocked;
     private boolean screenshotPermit;
