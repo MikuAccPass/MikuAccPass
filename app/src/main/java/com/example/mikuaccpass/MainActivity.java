@@ -1,5 +1,7 @@
 package com.example.mikuaccpass;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -27,6 +29,31 @@ public class MainActivity extends BaseActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (global.getPin() == -1) {
+            AlertDialog.Builder pinDialog = new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("欢迎使用Miku密码库")
+                    .setMessage("为了安全使用，请设置用于验证的Pin码")
+                    .setPositiveButton("乖乖就范", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent pin_set = new Intent(MainActivity.this, SetPinActivity.class);
+                            startActivity(pin_set);
+                        }
+                    })
+                    .setNegativeButton("宁可不用", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            MainActivity.this.finish();
+                        }
+                    });
+            pinDialog.show();
+        }
     }
 }
 
