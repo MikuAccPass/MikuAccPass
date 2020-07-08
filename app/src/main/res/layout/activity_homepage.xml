@@ -29,12 +29,12 @@
         app:srcCompat="@drawable/add" />
 
     <ListView
-        android:background="@color/bgcolor"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="56dp"
         android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="56dp"
+        android:background="@color/bgcolor">
 
 
     </ListView>
