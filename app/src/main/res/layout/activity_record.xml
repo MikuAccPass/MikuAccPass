@@ -36,13 +36,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="@drawable/star_button_select1"
+        android:background="@drawable/star_button_select"
         android:text="确定"/>
     <Button
         android:onClick="RandomNum"
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/star_button_select1"
+        android:background="@drawable/star_button_select"
         android:text="自动生成密码"/>
 </LinearLayout>
