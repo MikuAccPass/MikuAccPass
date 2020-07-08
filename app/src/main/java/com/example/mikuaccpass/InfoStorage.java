@@ -28,7 +28,7 @@ public class InfoStorage {
      * @param password
      */
     //对数据进行加密
-    public static void saveInfo(Context context,String appname, String username, String password,String appkey) {
+    public static void saveInfo(Context context,String appname, String username, String password,String appkey,String origin_appname) {
 
         //得到key
         SecretKey key = InfoStorage.readKey(InfoStorage.getPath(appkey));
@@ -55,6 +55,7 @@ public class InfoStorage {
         editor.putString("username", username);
         editor.putString("password", password);
         editor.putString("appkey",appkey);
+        editor.putString("origin_appname",origin_appname);
         editor.apply();
         editor.commit();
         editor2.apply();

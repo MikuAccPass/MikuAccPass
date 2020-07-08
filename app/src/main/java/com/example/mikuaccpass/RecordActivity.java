@@ -8,9 +8,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListPopupWindow;
 import android.widget.Toast;
+import android.view.View.OnTouchListener;
 
 
 public class RecordActivity extends BaseActivity {
@@ -18,7 +23,9 @@ public class RecordActivity extends BaseActivity {
     private EditText et_username;
     private EditText et_password;
     private EditText et_appname;
+    private GlobalApplication global;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,19 +34,53 @@ public class RecordActivity extends BaseActivity {
         et_appname = (EditText) findViewById(R.id.et_appname);
         et_username = (EditText) findViewById(R.id.et_username);
         et_password = (EditText) findViewById(R.id.et_password);
+        global = (GlobalApplication) getApplication();
+        et_appname.setOnTouchListener(new View.OnTouchListener(){
 
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (event.getX() >= (et_appname.getWidth() - et_appname
+                            .getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        showListPopulWindow();
+                        return true;
+                    }
+                }
+                return false;
+            }
 
+        });
     }
+    private void showListPopulWindow() {
+        final String[] list = global.getString();//要填充的数据
+        final ListPopupWindow listPopupWindow;
+        listPopupWindow = new ListPopupWindow(RecordActivity.this);
+        listPopupWindow.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, list));//用android内置布局，或设计自己的样式
+        listPopupWindow.setAnchorView(et_appname);//以哪个控件为基准，在该处以logId为基准
+        listPopupWindow.setModal(true);
+
+        listPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {//设置项点击监听
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                et_appname.setText(list[i]);//把选择的选项内容展示在EditText上
+                listPopupWindow.dismiss();//如果已经选择了，隐藏起来
+            }
+        });
+        listPopupWindow.show();//把ListPopWindow展示出来
+    }
+
     @SuppressLint("WrongConstant")
     public void click(View v)
     {
         String appname = et_appname.getText().toString().trim();
+        String origin_appname=appname;
         String username = et_username.getText().toString().trim();
         String password = et_password.getText().toString().trim();
         SharedPreferences pref = getSharedPreferences(appname,MODE_PRIVATE);
         int counter=2;
         while(pref.getString("username","")!=""){
-            appname =appname+counter;
+            appname =origin_appname+counter;
             counter++;
             pref=getSharedPreferences(appname,MODE_PRIVATE);
         }
@@ -58,7 +99,7 @@ public class RecordActivity extends BaseActivity {
         }else {
             Toast.makeText(this, "保存成功！", 0).show();
             InfoStorage infostorage = null;
-            infostorage.saveInfo(this,appname,username,password,appkey);
+            infostorage.saveInfo(this,appname,username,password,appkey,origin_appname);
            /*/ System.out.println("content为"+content[0]);
             System.out.println("content为"+content[1]);*/
 //            SharedPreferences.Editor editor = sp.edit();
@@ -68,6 +109,7 @@ public class RecordActivity extends BaseActivity {
 //            Toast.makeText(this, "密码保存成功！", 0).show();
         }
         startActivity(new Intent(RecordActivity.this, MainActivity.class));
+        finish();
     }
 
 
