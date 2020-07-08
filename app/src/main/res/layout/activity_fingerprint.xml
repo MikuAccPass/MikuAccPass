@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#2D1C4D">
+    android:background="#545454">
     <TextView
         android:id="@+id/tv_finger"
         android:layout_width="match_parent"
