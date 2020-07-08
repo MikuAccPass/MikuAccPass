@@ -34,11 +34,11 @@ public class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (getSystemService(AutofillManager.class).hasEnabledAutofillServices()) {
-            Toast.makeText(BaseActivity.this, "服务已启用", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(BaseActivity.this, "服务未启用", Toast.LENGTH_SHORT).show();
-        }
+//        if (getSystemService(AutofillManager.class).hasEnabledAutofillServices()) {
+//            Toast.makeText(BaseActivity.this, "服务已启用", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(BaseActivity.this, "服务未启用", Toast.LENGTH_SHORT).show();
+//        }
 
         if (global.isLocked() && global.getPin() != -1) {
             if (global.isFingerprint_enable()) {
