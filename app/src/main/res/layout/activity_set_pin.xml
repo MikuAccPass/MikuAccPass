@@ -30,14 +30,16 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:inputType="numberPassword"
+        android:textColorHint="@color/xui_config_color_white"
         android:hint="请输入Pin"
-        android:textColorHint="#D5C0CF"/>
+        />
 
     <com.xuexiang.xui.widget.button.shadowbutton.ShadowButton
         android:id="@+id/apply_btn"
         android:layout_width="64dp"
         android:layout_height="64dp"
         app:sb_shape_type="round"
+        app:sUseShape="true"
         app:sb_color_unpressed="#B186A3"
         app:sb_color_pressed="#594675"
         android:layout_below="@+id/pin_et"

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2D1C4D"
     android:orientation="vertical" >
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:gravity="center"
+        android:textColor="@color/xui_config_color_white"
         android:text="无" />
 
     <EditText
@@ -18,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请重新输入用户名"
+        android:textColorHint="@color/xui_config_color_white"
         android:inputType="textPersonName" />
 
     <EditText
@@ -25,12 +28,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:hint="请重新输入密码" />
+        android:hint="请重新输入密码"
+        android:textColorHint="@color/xui_config_color_white"/>
 
     <Button
         style="@style/Button.Blue"
+        android:background="@drawable/star_button_select"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="11dp"
         android:layout_gravity="center_horizontal"
         android:onClick="click1"
         android:text="确定" />
