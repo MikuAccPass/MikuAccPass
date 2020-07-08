@@ -27,6 +27,9 @@ public class MikuAutofillService extends AutofillService {
     @Override
     public void onFillRequest(@NonNull FillRequest fillRequest, @NonNull CancellationSignal cancellationSignal, @NonNull FillCallback fillCallback) {
         preferences = getSharedPreferences("setting", MODE_PRIVATE);
+        accountList.clear();
+        fields.clear();
+        
         if(preferences.getBoolean("autofill_enable",false))
         {
             getAccounts();
