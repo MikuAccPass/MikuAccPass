@@ -25,7 +25,7 @@ public class SetPinActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_pin);
 
-        preferences = getSharedPreferences("security", MODE_PRIVATE);
+        preferences = getSharedPreferences("setting", MODE_PRIVATE);
         global = (GlobalApplication) getApplication();
 
     }

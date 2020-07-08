@@ -22,13 +22,14 @@
         android:id="@+id/btn_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="500dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
         android:clickable="true"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@drawable/add" />
 
     <ListView
-        android:background="#545454"
+        android:background="#594675"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="56dp"
         android:id="@+id/list_view"

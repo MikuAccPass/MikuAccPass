@@ -152,7 +152,7 @@ public class HomepageActivity extends Fragment {
             {
                 int imageid=getResource(global.getElement(origin_appname));
                 if(imageid==0)
-                    imageid=getResource("ic_launcher_background");
+                    imageid=getResource("application");
                 InfoStorage infostorage = null;
                 String[] content=infostorage.readInfo(getActivity(),appname,appkey);
                 Acount x = new Acount(origin_appname,content[0],content[1], imageid);

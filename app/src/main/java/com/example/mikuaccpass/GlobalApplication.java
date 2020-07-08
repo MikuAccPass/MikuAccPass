@@ -68,7 +68,7 @@ public class GlobalApplication extends Application {
         else if(appname.equals("大众点评"))
             return "dian_ping";
         else if(appname.equals("毒"))
-            return "dewu";
+            return "du";
         else if(appname.equals("虎扑"))
             return "hupu";
         else if(appname.equals("instagram"))
@@ -99,7 +99,7 @@ public class GlobalApplication extends Application {
             return "zhihu";
         else if(list.contains(appname))
             return appname;
-        else return "ic_launcher_background";
+        else return "application";
     }
 
     public boolean isLocked() {
