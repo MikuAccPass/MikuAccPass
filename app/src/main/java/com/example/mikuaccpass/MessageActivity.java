@@ -1,7 +1,9 @@
 package com.example.mikuaccpass;
 
+import android.app.AlertDialog;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -66,16 +68,31 @@ public class MessageActivity extends BaseActivity {
             btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String xmlpath="/data/data/com.example.mikuaccpass/shared_prefs/"+station+".xml";
-                    String keypath="/data/data/com.example.mikuaccpass/shared_prefs/appkeys/"+station+"key";
-                    deleteSingleFile(xmlpath);
-                    deleteSingleFile(keypath);
-                    delInfo(station);
-                    Intent intent = new Intent();
-                    intent.setAction("action.refreshList");
-                    sendBroadcast(intent);
-                    startActivity(new Intent(MessageActivity.this,MainActivity.class));
-                    finish();
+                    AlertDialog.Builder deleteAlert = new AlertDialog.Builder(MessageActivity.this)
+                            .setTitle("删除")
+                            .setMessage("真的要删除该账户信息吗？")
+                            .setPositiveButton("覆水难收", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    String xmlpath="/data/data/com.example.mikuaccpass/shared_prefs/"+station+".xml";
+                                    String keypath="/data/data/com.example.mikuaccpass/shared_prefs/appkeys/"+station+"key";
+                                    deleteSingleFile(xmlpath);
+                                    deleteSingleFile(keypath);
+                                    delInfo(station);
+                                    Intent intent = new Intent();
+                                    intent.setAction("action.refreshList");
+                                    sendBroadcast(intent);
+                                    startActivity(new Intent(MessageActivity.this,MainActivity.class));
+                                    finish();
+                                }
+                            })
+                            .setNegativeButton("悬崖勒马", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    return;
+                                }
+                            });
+                    deleteAlert.show();
                 }
             });
         }
