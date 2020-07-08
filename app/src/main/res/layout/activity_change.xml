@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,7 +21,11 @@
         android:layout_height="wrap_content"
         android:hint="请重新输入用户名"
         android:textColorHint="@color/xui_config_color_white"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:layout_above="@+id/et_password1"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:textColor="#DCDCDC"/>
 
     <EditText
         android:id="@+id/et_password1"
@@ -29,7 +33,10 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:hint="请重新输入密码"
-        android:textColorHint="@color/xui_config_color_white"/>
+        android:gravity="center"
+        android:textColorHint="@color/xui_config_color_white"
+        android:layout_centerVertical="true"
+        android:textColor="#DCDCDC"/>
     <Button
         android:background="@drawable/star_button_select"
         android:layout_width="wrap_content"
@@ -37,6 +44,9 @@
         android:layout_gravity="center_horizontal"
         android:onClick="click1"
         android:textColor="@color/xui_config_color_white"
-        android:text="确定" />
+        android:text="确定"
+        android:layout_below="@+id/et_password1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
 
-</LinearLayout>
+</RelativeLayout>
