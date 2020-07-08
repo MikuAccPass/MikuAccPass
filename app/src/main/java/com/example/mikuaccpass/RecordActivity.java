@@ -60,6 +60,8 @@ public class RecordActivity extends BaseActivity {
         final String[] list = global.getString();//要填充的数据
         final ListPopupWindow listPopupWindow;
         listPopupWindow = new ListPopupWindow(RecordActivity.this);
+        int height = getWindowManager().getDefaultDisplay().getHeight();
+        listPopupWindow.setHeight(height * 1 / 2);
         listPopupWindow.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list));//用android内置布局，或设计自己的样式
         listPopupWindow.setAnchorView(et_appname);//以哪个控件为基准，在该处以logId为基准
         listPopupWindow.setModal(true);

@@ -91,6 +91,7 @@ public class HomepageActivity extends Fragment {
 
                 // intent1.putExtra("activity4", position);
                 startActivity(intent1);
+
                /*if()
                {
 
@@ -146,14 +147,15 @@ public class HomepageActivity extends Fragment {
             SharedPreferences pref=this.getActivity().getSharedPreferences(appname, MODE_PRIVATE);
             String appkey = pref.getString("appkey","");
             String origin_appname=pref.getString("origin_appname","");
+
             if(!origin_appname.equals(""))
             {
-                int imageid=getResource(origin_appname);
+                int imageid=getResource(global.getElement(origin_appname));
                 if(imageid==0)
                     imageid=getResource("ic_launcher_background");
                 InfoStorage infostorage = null;
                 String[] content=infostorage.readInfo(getActivity(),appname,appkey);
-                Acount x = new Acount(appname,content[0],content[1], imageid);
+                Acount x = new Acount(origin_appname,content[0],content[1], imageid);
                 acountList.add(x);
             }
         }
