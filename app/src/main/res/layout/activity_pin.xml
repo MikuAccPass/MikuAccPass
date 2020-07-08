@@ -35,7 +35,7 @@
         android:textColorHint="@color/xui_config_color_white"
         android:hint="请输入密码"
         android:inputType="numberPassword"
-        android:textColor="#000000"/>
+        android:textColor="#FFFFFF"/>
 
 
 
@@ -48,7 +48,7 @@
         android:layout_below="@+id/Password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        app:sb_color_unpressed="#000000" />
+        app:sb_color_unpressed="#696969" />
 
     <TextView
         android:layout_width="wrap_content"
