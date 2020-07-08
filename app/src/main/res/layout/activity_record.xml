@@ -1,48 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#545454">
+    android:background="#545454"
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/et_appname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:drawableRight="@android:drawable/arrow_down_float"
         android:hint="请输入应用名称"
-        android:textColorHint="@color/xui_config_color_white"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:padding="15dp"
+        android:textColorHint="@color/xui_config_color_white" />
+
     <EditText
         android:id="@+id/et_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/et_appname"
+        android:layout_marginTop="10dp"
         android:hint="请输入用户名"
-        android:textColorHint="@color/xui_config_color_white"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:padding="15dp"
+        android:textColorHint="@color/xui_config_color_white" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:layout_below="@+id/et_username"
+        android:layout_marginTop="10dp"
         android:hint="请重新输入密码"
-        android:textColorHint="@color/xui_config_color_white"/>
+        android:inputType="textPassword"
+        android:padding="15dp"
+        android:textColorHint="@color/xui_config_color_white" />
 
     <Button
+        android:id="@+id/ss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_password"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:background="@drawable/star_button_select"
         android:onClick="click"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/star_button_select"
-        android:text="确定"/>
+        android:text="确定" />
+
     <Button
-        android:onClick="RandomNum"
-        android:layout_centerInParent="true"
+        android:id="@+id/sss"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/ss"
+        android:layout_marginTop="15dp"
         android:background="@drawable/star_button_select"
-        android:text="自动生成密码"/>
-</LinearLayout>
+        android:onClick="RandomNum"
+        android:text="自动生成密码" />
+</RelativeLayout>
