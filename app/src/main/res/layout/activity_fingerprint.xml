@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#2D1C4D">
     <TextView
         android:id="@+id/tv_finger"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="32dp"
         android:gravity="center"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
+        android:textColor="#B186A3"
         android:text="请验证指纹"
+        android:textStyle="bold"
+        android:layout_above="@+id/fpp"
+        android:layout_marginBottom="50dp"/>
+
+    <ImageView
+        android:id="@+id/fpp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fingerprint"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         />
 
-    <Button
+    <com.xuexiang.xui.widget.button.roundbutton.RoundButton
         android:id="@+id/btn_pin"
         android:textSize="16dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="使用Pin验证"
         android:layout_centerHorizontal="true"
         android:onClick="usePin"
-        android:layout_below="@id/tv_finger"/>
+        android:layout_below="@id/fpp"
+        android:layout_marginTop="50dp" />
 
 </RelativeLayout>
