@@ -5,6 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#545454"
     tools:context=".MessageActivity">
 
     <LinearLayout
@@ -84,7 +85,6 @@
         android:id="@+id/btn_change"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="/Button"
         android:layout_gravity="center_horizontal"
         android:text="是否重新存储" />
     <Button

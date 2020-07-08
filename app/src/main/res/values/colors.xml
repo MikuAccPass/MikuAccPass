@@ -3,7 +3,7 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="clr_normal">#2d1c4d</color>
-    <color name="clr_pressed">#594675</color>
+    <color name="clr_normal">#434343</color>
+    <color name="clr_pressed">#483D8B</color>
 
 </resources>
