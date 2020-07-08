@@ -8,6 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.xuexiang.xui.widget.textview.MarqueeTextView;
+import com.xuexiang.xui.widget.textview.marqueen.DisplayEntity;
+
+import java.util.List;
+
 public class SetPinActivity extends BaseActivity {
 
     private EditText edtpin;
@@ -21,7 +26,8 @@ public class SetPinActivity extends BaseActivity {
         setContentView(R.layout.activity_set_pin);
 
         preferences = getSharedPreferences("security", MODE_PRIVATE);
-        global = (GlobalApplication)getApplication();
+        global = (GlobalApplication) getApplication();
+
     }
 
     @Override
