@@ -45,7 +45,7 @@ public class RecordActivity extends BaseActivity {
                 final int DRAWABLE_RIGHT = 2;
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     if (event.getX() >= (et_appname.getWidth() - et_appname
-                            .getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                            .getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width()*2)) {
                         showListPopulWindow();
                         return true;
                     }
