@@ -19,16 +19,18 @@
         <activity android:name=".ChangeActivity"></activity>
         <activity android:name=".MessageActivity"></activity>
         <activity android:name=".RecordActivity" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".FingerprintActivity" />
         <activity android:name=".SetPinActivity" />
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".PinActivity" />
         <service
             android:name=".MikuAutofillService"

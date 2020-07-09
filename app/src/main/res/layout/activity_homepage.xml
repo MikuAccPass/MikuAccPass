@@ -32,6 +32,10 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fastScrollEnabled="false"
+        android:scrollbars="none"
+        android:paddingRight="6dp"
+        android:paddingLeft="6dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="56dp"
         android:background="@color/bgcolor">

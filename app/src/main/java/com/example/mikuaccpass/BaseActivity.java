@@ -1,6 +1,8 @@
 package com.example.mikuaccpass;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.view.autofill.AutofillManager;
@@ -16,6 +18,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         try
         {
             this.getSupportActionBar().hide();
@@ -64,5 +67,12 @@ public class BaseActivity extends AppCompatActivity {
             global.setLocked(true);
         }
     }
-}
+    public static void setTranslucent(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            // 设置状态栏透明
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
+
+    }
 

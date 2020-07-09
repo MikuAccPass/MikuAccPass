@@ -1,51 +1,33 @@
 package com.example.mikuaccpass;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        init();
-    }
 
-    private void init() {
-        if (global.getPin() == -1) {
-            handler.sendEmptyMessageDelayed(1, 2500);
-        } else {
-            handler.sendEmptyMessageDelayed(0, 3000);
-        }
-    }
+        Thread myThread = new Thread() {
+            //创建子线程
+            @Override
+            public void run() {
 
-    @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 0:
-
-                    Intent intent = new Intent();
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.setClass(SplashActivity.this, PinActivity.class);
-                    startActivity(intent);
-                    //break;
-
-                case 1:
-                    Intent intent1 = new Intent();
-                    intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent1.setClass(SplashActivity.this, MainActivity.class);
-                    startActivity(intent1);
-                default:
-                    break;
+                try {
+                    sleep(2000);//使程序休眠一秒
+                    Intent it = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(it);
+                    finish();//关闭当前活动
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-    };
-
-
+        };
+        myThread.start();//启动线程
+    }
 }
