@@ -40,7 +40,7 @@ public class MikuAutofillService extends AutofillService {
             for (int i = 0; i < fields.size(); i++) {
                 for (int j = 0; j < accountList.size(); j++) {
                     RemoteViews usernamePresentation = new RemoteViews(getPackageName(), android.R.layout.simple_list_item_1);
-                    usernamePresentation.setTextViewText(android.R.id.text1, accountList.get(j).getName());
+                    usernamePresentation.setTextViewText(android.R.id.text1, accountList.get(j).getStation());
 
                     Dataset loginDataSet = new Dataset.Builder()
                             .setValue(fields.get(i).getAutofillId(), AutofillValue.forText(accountList.get(j).getPassword()), usernamePresentation)
