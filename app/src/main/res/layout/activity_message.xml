@@ -106,7 +106,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/star_button_select"
         android:gravity="center"
-        android:text="是否重新存储"
+        android:text="编辑"
         android:textColor="@color/xui_config_color_white"/>
 
     <Button
@@ -119,6 +119,17 @@
         android:background="@drawable/star_button_select"
         android:gravity="center"
         android:text="删除"
+        android:textColor="@color/xui_config_color_white"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_delete"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="180dp"
+        android:text="Tips：单击用户名或密码可以直接进行复制"
+        android:textSize="12sp"
         android:textColor="@color/xui_config_color_white"/>
 
 

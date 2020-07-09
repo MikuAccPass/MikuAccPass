@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:gravity="center"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:textColor="@color/xui_config_color_white"
         android:text="无" />
 

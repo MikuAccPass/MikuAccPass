@@ -3,8 +3,8 @@
         <item android:state_pressed="false">   <!-- 按钮未点击-->
             <shape >
                   <stroke android:width="0.8dp"
-                          android:color="#434343" /><!-- 边框颜色大小-->
-                  <solid android:color="#434343" /> <!-- 颜色-->
+                          android:color="#484848" /><!-- 边框颜色大小-->
+                  <solid android:color="#454545" /> <!-- 颜色-->
                   <corners android:radius="15dip" /><!--半径 -->
                   <padding android:bottom="10dp"
                            android:left="10dp"
