@@ -121,7 +121,7 @@ public class MessageActivity extends BaseActivity {
 
     public void copyname(View v) {
         ClipboardManager cmb = (ClipboardManager) getApplicationContext().getSystemService(this.CLIPBOARD_SERVICE);
-        cmb.setText(tvpw.getText().toString().trim()); //将内容放入粘贴管理器
+        cmb.setText(tvname.getText().toString().trim()); //将内容放入粘贴管理器
         Toast.makeText(this, "用户名已经复制", Toast.LENGTH_SHORT).show();
 
     }
