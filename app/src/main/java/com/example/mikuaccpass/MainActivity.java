@@ -44,6 +44,7 @@ public class MainActivity extends BaseActivity {
 
         if (global.getPin() == -1) {
             AlertDialog.Builder pinDialog = new AlertDialog.Builder(MainActivity.this)
+                    .setCancelable(false)
                     .setTitle("欢迎使用Miku密码库")
                     .setMessage("为了安全使用，请设置用于验证的Pin码")
                     .setPositiveButton("乖乖就范", new DialogInterface.OnClickListener() {
