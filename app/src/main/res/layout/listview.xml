@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:stateListAnimator="@drawable/lift_on_touch"
     app:cardBackgroundColor="#545454"
-    app:cardCornerRadius="5dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="1dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
-    app:contentPadding="5dp">
+    app:contentPadding="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"

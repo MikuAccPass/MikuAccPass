@@ -92,11 +92,12 @@ public class MikuAutofillService extends AutofillService {
             String appname = i + "";
             appname = preferences.getString(appname, "");//获取appname为命名的相关sharepreference文件夹名字
             SharedPreferences pref = getSharedPreferences(appname, MODE_PRIVATE);
+            if(!(pref.getString("origin_appname","").equals(""))){
             String appkey = pref.getString("appkey", "");
             InfoStorage infostorage = null;
             String[] content = infostorage.readInfo(this, appname, appkey);
             Acount x = new Acount(appname, content[0], content[1], R.drawable.ic_launcher_background);
-            accountList.add(x);
+            accountList.add(x);}
         }
         editor.apply();
     }
