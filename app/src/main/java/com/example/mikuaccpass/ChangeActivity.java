@@ -55,7 +55,7 @@ public class ChangeActivity extends BaseActivity {
 
         //System.out.println(password +"---"+password_confirm);
         if (TextUtils.isEmpty(appname) || TextUtils.isEmpty(password) || TextUtils.isEmpty(username)) {
-            Toast.makeText(this, "密码不能为空！", 0).show();
+            Toast.makeText(this, "输入内容不能为空！", 0).show();
             return;
         } else {
             Toast.makeText(this, "保存成功！", 0).show();
