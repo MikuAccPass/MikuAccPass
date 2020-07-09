@@ -32,6 +32,12 @@ public class MainActivity extends BaseActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
+    public void onBackPressed() {
+        Intent home = new Intent(Intent.ACTION_MAIN);
+        home.addCategory(Intent.CATEGORY_HOME);
+        startActivity(home);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -56,5 +62,6 @@ public class MainActivity extends BaseActivity {
             pinDialog.show();
         }
     }
+
 }
 
