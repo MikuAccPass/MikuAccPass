@@ -72,7 +72,7 @@ public class GlobalApplication extends Application {
         else if(appname.equals("虎扑"))
             return "hupu";
         else if(appname.equals("instagram"))
-            return "instagrm";
+            return "instagram";
         else if(appname.equals("京东"))
             return "jd";
         else if(appname.equals("keep"))
