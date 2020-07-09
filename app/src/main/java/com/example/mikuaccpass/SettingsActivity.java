@@ -140,16 +140,24 @@ public class SettingsActivity extends Fragment {
         fingerprint_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if (global.getPin() == -1) {
-                    fingerprint_switch.setChecked(false);
-                    Toast fill_toast = Toast.makeText(getActivity(), "请先设置Pin", Toast.LENGTH_SHORT);
-                    fill_toast.setGravity(Gravity.CENTER, 0, 0);
-                    fill_toast.show();
-                    Intent pin_set = new Intent(getActivity(), SetPinActivity.class);
-                    startActivity(pin_set);
+                if (fingerprint_switch.isChecked()) {
+                    if (global.getPin() == -1) {
+                        fingerprint_switch.setChecked(false);
+                        Toast fill_toast = Toast.makeText(getActivity(), "请先设置Pin", Toast.LENGTH_SHORT);
+                        fill_toast.setGravity(Gravity.CENTER, 0, 0);
+                        fill_toast.show();
+                        Intent pin_set = new Intent(getActivity(), SetPinActivity.class);
+                        startActivity(pin_set);
+                    } else {
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putBoolean("fingerprint_enable", true);
+                        editor.apply();
+                        if (isChecked == (preferences.getBoolean("fingerprint_enable", false)))
+                            global.setFingerprint_enable(isChecked);
+                    }
                 } else {
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putBoolean("fingerprint_enable", true);
+                    editor.putBoolean("fingerprint_enable", false);
                     editor.apply();
                     if (isChecked == (preferences.getBoolean("fingerprint_enable", false)))
                         global.setFingerprint_enable(isChecked);
