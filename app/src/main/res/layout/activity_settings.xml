@@ -10,6 +10,7 @@
     tools:context=".SettingsActivity"
     tools:ignore="ExtraText">
 
+
     <TextView
         android:id="@+id/shot"
         android:layout_width="230dp"
@@ -17,10 +18,10 @@
         android:layout_marginTop="50dp"
         android:padding="15dp"
         android:text="允许截图"
+        android:layout_marginLeft="50dp"
+        android:textColor="@color/xui_config_color_white"
         android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/xui_config_color_white" />
-
+        android:textStyle="bold" />
 
     <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
         android:id="@+id/pin_btn"
@@ -45,7 +46,8 @@
         android:layout_width="150dp"
         android:layout_height="58dp"
         android:layout_alignBottom="@+id/shot"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginBottom="2dp"
         android:layout_toRightOf="@+id/shot"
         app:swb_animationDuration="300"
         app:swb_backDrawable="@drawable/ios_back_drawable"
@@ -64,6 +66,7 @@
         android:layout_marginTop="20dp"
         android:padding="15dp"
         android:text="允许指纹验证"
+        android:layout_marginLeft="50dp"
         android:textColor="@color/xui_config_color_white"
         android:textSize="20dp"
         android:textStyle="bold" />
@@ -92,6 +95,7 @@
         android:layout_marginTop="20dp"
         android:padding="15dp"
         android:text="允许自动填充"
+        android:layout_marginLeft="50dp"
         android:textColor="@color/xui_config_color_white"
         android:textSize="20dp"
         android:textStyle="bold" />
@@ -113,6 +117,30 @@
         app:swb_thumbMarginRight="-5dp"
         app:swb_thumbMarginTop="-2.5dp"
         app:swb_thumbRangeRatio="1.4" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/jietu" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="140dp"
+        android:src="@drawable/finger" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="216dp"
+        android:src="@drawable/auto" />
 
 
 </RelativeLayout>

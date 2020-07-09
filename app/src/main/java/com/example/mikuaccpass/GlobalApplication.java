@@ -90,7 +90,7 @@ public class GlobalApplication extends Application {
         else if(appname.equals("百度贴吧"))
             return "tieba";
         else if(appname.equals("抖音"))
-            return "douyin";
+            return "tiktok";
         else if(appname.equals("微信"))
             return"wechat";
         else if(appname.equals("微博"))
