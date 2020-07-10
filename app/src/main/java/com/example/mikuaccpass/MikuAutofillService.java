@@ -34,9 +34,12 @@ public class MikuAutofillService extends AutofillService {
             getAccounts();
             if(accountList.size() == 0)
                 return;
+
             List<FillContext> context = fillRequest.getFillContexts();
             AssistStructure structure = context.get(context.size() - 1).getStructure();
             traverseStructure(structure);
+            if(fields.size() == 0)
+                return;
 
             FillResponse.Builder responseBuilder = new FillResponse.Builder();
             for (int i = 0; i < fields.size(); i++) {
