@@ -45,7 +45,7 @@ public class MikuAutofillService extends AutofillService {
             for (int i = 0; i < fields.size(); i++) {
                 for (int j = 0; j < accountList.size(); j++) {
                     RemoteViews usernamePresentation = new RemoteViews(getPackageName(), android.R.layout.simple_list_item_1);
-                    usernamePresentation.setTextViewText(android.R.id.text1, accountList.get(j).getStation());
+                    usernamePresentation.setTextViewText(android.R.id.text1, accountList.get(j).getOrigin_appname());
 
                     Dataset loginDataSet = new Dataset.Builder()
                             .setValue(fields.get(i).getAutofillId(), AutofillValue.forText(accountList.get(j).getPassword()), usernamePresentation)
@@ -101,7 +101,7 @@ public class MikuAutofillService extends AutofillService {
             String appkey = pref.getString("appkey", "");
             InfoStorage infostorage = null;
             String[] content = infostorage.readInfo(this, appname, appkey);
-            Acount x = new Acount(appname, content[0], content[1], R.drawable.ic_launcher_background);
+            Acount x = new Acount(appname, content[0], content[1], R.drawable.ic_launcher_background,pref.getString("origin_appname",""));
             accountList.add(x);}
         }
         editor.apply();

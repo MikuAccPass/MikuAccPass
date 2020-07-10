@@ -45,11 +45,12 @@ public class MessageActivity extends BaseActivity {
     private void initEvent() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
+            final String origin_appname=extras.getString("activity0");
             final String station = extras.getString("activity1");
             final String name = extras.getString("activity2");
             final String password = extras.getString("activity3");
             //  final String nameid=extras.getString("activity4");
-            tvstation.setText(station);
+            tvstation.setText(origin_appname);
             tvname.setText(name);
             tvpw.setText(password);
             btnChange.setOnClickListener(new View.OnClickListener() {

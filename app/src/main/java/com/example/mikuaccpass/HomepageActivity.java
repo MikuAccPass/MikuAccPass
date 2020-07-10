@@ -79,11 +79,13 @@ public class HomepageActivity extends Fragment {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Acount fruit = acountList.get(position);
+                String origin_appname=fruit.getOrigin_appname();
                 String station=fruit.getStation();
                 String name=fruit.getName();
                 String password=fruit.getPassword();
                 //   String nameid=fruit.getNameid();
                 Intent intent1 = new Intent(getActivity(), MessageActivity.class);
+                intent1.putExtra("activity0", origin_appname);
                 intent1.putExtra("activity1", station);
                 intent1.putExtra("activity2", name);
                 intent1.putExtra("activity3", password);
@@ -155,7 +157,7 @@ public class HomepageActivity extends Fragment {
                     imageid=getResource("application");
                 InfoStorage infostorage = null;
                 String[] content=infostorage.readInfo(getActivity(),appname,appkey);
-                Acount x = new Acount(origin_appname,content[0],content[1], imageid);
+                Acount x = new Acount(appname,content[0],content[1], imageid,origin_appname);
                 acountList.add(x);
             }
         }
@@ -186,7 +188,7 @@ public class HomepageActivity extends Fragment {
                     imageid=getResource("ic_launcher_background");
                 InfoStorage infostorage = null;
                 String[] content=infostorage.readInfo(getActivity(),appname,appkey);
-                Acount x = new Acount(appname,content[0],content[1], imageid);
+                Acount x = new Acount(appname,content[0],content[1], imageid,origin_appname);
                 passwordarray[i]=x.getPassword();
             }
         }
