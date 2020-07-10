@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/et_username"
         android:layout_marginTop="43dp"
-        android:hint="请重新输入密码"
+        android:hint="请输入密码"
         android:inputType="textPassword"
         android:layout_centerHorizontal="true"
         android:padding="15dp"
