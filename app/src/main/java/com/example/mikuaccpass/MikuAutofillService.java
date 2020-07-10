@@ -32,6 +32,8 @@ public class MikuAutofillService extends AutofillService {
 
         if (preferences.getBoolean("autofill_enable", false)) {
             getAccounts();
+            if(accountList.size() == 0)
+                return;
             List<FillContext> context = fillRequest.getFillContexts();
             AssistStructure structure = context.get(context.size() - 1).getStructure();
             traverseStructure(structure);
